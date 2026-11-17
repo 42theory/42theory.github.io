@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; media-src 'self'; connect-src 'self' https://formsubmit.co; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>42theory: physics on demand, with error bars</title>
-<meta name="description" content="42theory builds solvers for heat and light. Worked example: a chip's heat solved exactly in 3-D, then backward from an 85 °C limit to the power every block can still take, with 95% intervals and a receipt, computed live in the page.">
+<title>42theory: exact physics, without the GPU farm</title>
+<meta name="description" content="42theory builds solvers and simulators that answer in milliseconds on one CPU core, check themselves and put an interval on every number. Two problems first: heat in 3-D stacked AI chips, and the X-ray dose a CT scan needs to find lung and colon cancer. Both run live in this page.">
 <link rel="canonical" href="https://42theory.com/">
-<meta property="og:title" content="42theory: physics on demand, with error bars">
-<meta property="og:description" content="A chip's heat, solved exactly and then backward from a temperature limit, with intervals and a receipt. Solved live in the page.">
+<meta property="og:title" content="42theory: exact physics, without the GPU farm">
+<meta property="og:description" content="Heat in a 3-D stacked AI chip and the dose a CT scan needs to find a 6 mm nodule, solved exactly in the page, with intervals and a run record.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://42theory.com/">
 <meta name="theme-color" content="#FAFAF8">
@@ -18,14 +18,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Geist+Mono:wght@300..500&amp;display=swap">
-<link rel="stylesheet" href="assets/42theory.css?v=23f01a1a">
+<link rel="stylesheet" href="assets/42theory.css?v=7710e8b7">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" integrity="sha384-IDC7sAMAIMB/TZ6dgKKPPAKZ2bXXXP8+FBMBC8cU319eBhKITx+PaalhfDkDNH28" crossorigin="anonymous">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="notice" id="notice">
-  <p class="m">Worked example: a chip's heat, solved forward and backward in this page. <a href="#limits">Run the solver</a></p>
+  <p class="m">Two solvers run in this page: heat in a 3-D stacked AI chip, and the dose a CT scan needs to find a 6 mm nodule. <a href="#lab">Run the chip</a> · <a href="#health">Run the scan</a></p>
   <button type="button" class="notice-x" id="notice-x" aria-label="Dismiss this notice"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor"/><path d="M7 7l6 6M13 7l-6 6" stroke="currentColor" stroke-linecap="round"/></svg></button>
 </div>
 
@@ -34,9 +34,9 @@
     <a class="logo" href="#top" aria-label="42theory, back to top"><img src="assets/42theory-lockup.svg" alt="42theory" width="276" height="69"></a>
     <nav aria-label="Main">
       <ul class="m">
-        <li><a href="#chip">Use case</a></li>
-        <li><a href="#light">Light</a></li>
-        <li><a href="#limits">Limits</a></li>
+        <li><a href="#chips">Chips</a></li>
+        <li><a href="#health">Healthcare</a></li>
+        <li><a href="#compete">Where we compete</a></li>
         <li><a href="#compute">Compute</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#film">Film</a></li>
@@ -58,65 +58,64 @@
     <div class="story-labels" id="story-labels" aria-hidden="true"></div>
     <div class="story-tags" id="story-tags" aria-hidden="true"></div>
     <div class="story-hero" id="story-hero">
-      <h1 id="t-hero">Physics on demand.<br>With error bars.</h1>
-      <p class="lead">42theory builds solvers for heat and light. Here the design is a chip: from its layers, materials and workload, the solver finds the temperature of every block and how much more power each can take, with an interval on every number.</p>
+      <h1 id="t-hero">Exact physics.<br>Without the GPU farm.</h1>
+      <p class="lead">42theory builds solvers and simulators that answer in milliseconds on one CPU core, check their own work and put an interval on every number. Two problems first: heat in 3-D stacked AI chips, and the X-ray dose a CT scan needs to find lung and colon cancer.</p>
       <div class="cta">
-        <a class="pill red" href="#limits">Run the solver</a>
-        <a class="pill line" href="#contact">Talk to a scientist</a>
+        <a class="pill red" href="#lab">Run the chip solver</a>
+        <a class="pill line" href="#health">Run the CT simulator</a>
       </div>
-      <p class="meta m">Worked example: a flip-chip die, 10&nbsp;×&nbsp;10&nbsp;mm, 56.6&nbsp;W</p>
+      <p class="meta m">Worked example: a 370 W GPU with six 8-high memory stacks, from a 2026 UCLA design study</p>
     </div>
     <ol class="story-steps m" id="story-steps" aria-label="Story steps">
-      <li><button type="button">Board</button></li><li><button type="button">Package</button></li><li><button type="button">Layers</button></li><li><button type="button">Heat</button></li><li><button type="button">Light</button></li><li><button type="button">Limit</button></li><li><button type="button">Answer</button></li>
+      <li><button type="button">Module</button></li><li><button type="button">Beside</button></li><li><button type="button">Stacked</button></li><li><button type="button">Layers</button></li><li><button type="button">Heat</button></li><li><button type="button">Limit</button></li><li><button type="button">Answer</button></li>
     </ol>
-    <div class="story-text" id="story-text" aria-live="polite"><h2 id="story-title"></h2><p class="m" id="story-sub"></p><a class="pill red" id="story-cta" href="#limits" hidden>Run the solver yourself</a></div>
-    <div class="story-bar m" id="story-bar" aria-hidden="true"><span id="bar-lo">40 °C</span><i></i><span id="bar-hi">68 °C</span></div>
+    <div class="story-text" id="story-text" aria-live="polite"><h2 id="story-title"></h2><p class="m" id="story-sub"></p><a class="pill red" id="story-cta" href="#lab" hidden>Run the solver yourself</a></div>
+    <div class="story-bar m" id="story-bar" aria-hidden="true"><span id="bar-lo">75 °C</span><i></i><span id="bar-hi">105 °C</span></div>
     <div class="story-scale m" id="story-scale" aria-hidden="true"><i></i><span>10 mm</span></div>
-    <p class="story-hint m" aria-hidden="true">Scroll to take the chip apart</p>
+    <p class="story-hint m" aria-hidden="true">Scroll to take the package apart</p>
   </div>
 </section>
 <noscript><style>.story{height:auto}.story-sticky{position:relative;height:auto;overflow:visible;background:none}.story canvas,.story-steps,.story-text,.story-bar,.story-scale,.story-hint,.story-note{display:none}.story-hero{position:relative;left:auto;top:auto;padding:120px var(--pad) 40px;max-width:none}</style></noscript>
-<div class="wrap story-note"><p class="m">Rendered live in your browser from the solver on this page. Side to side the parts are to scale; layer thicknesses are stretched so each one reads, and wiring patterns are drawn, not traced from a real layout. The labels give the values the model uses, and the model gives every layer the die's 10 × 10 mm footprint. The chip is synthetic: its floorplan and workload are invented, the physics is not.</p></div>
+<div class="wrap story-note"><p class="m">Rendered live in your browser from the solver on this page. Side to side the parts are to scale; layer thicknesses are stretched so each one reads, and wiring patterns are drawn, not traced from a real layout. Dimensions, powers, cooling and layers follow Ray et al. (UCLA, 2026) and imec's published layer data; the GPU floorplan inside the published 32.4 × 25.5 mm die is ours. The model fills the gaps between the stacked memory with silicon, so every layer spans the GPU.</p></div>
 <div class="wrap" id="story-fallback" hidden>
     <figure class="stage" aria-labelledby="hero-cap">
-      <canvas id="hero-cv" role="img" aria-label="An exploded chip stack: package substrate, bumps, interconnect, transistors and silicon. Heat spreads from 13 powered blocks; near, short-wave and long-wave infrared meet the silicon; then every block's peak temperature is held against an 85 °C limit, with 95% intervals.">A chip stack, its heat, and the headroom to its limit.</canvas>
+      <canvas id="hero-cv" role="img" aria-label="The memory-on-GPU stack pulled apart layer by layer, with the solved temperature of the GPU transistors and of each DRAM die.">The memory-on-GPU stack and its heat.</canvas>
       <button type="button" class="stage-btn m" id="hero-pause" aria-pressed="false">Pause</button>
-      <figcaption class="m" id="hero-cap">Computed in your browser: a 3-D heat solve on 48 × 48 × 14 cells, steady and transient, then the headroom to an 85 °C limit, with 95% intervals from 200 solves with uncertain inputs. The chip is synthetic: its floorplan and workload are invented.</figcaption>
+      <figcaption class="m" id="hero-cap">Computed in your browser: the 3-D heat of a 370 W GPU under eight DRAM dies, on 56 × 44 × 35 cells. Layers to scale side to side, thicknesses stretched.</figcaption>
     </figure>
 </div>
-
 
 <section class="statement" aria-label="What 42theory does">
   <canvas class="field" id="field-cv" aria-hidden="true"></canvas>
   <div class="wrap grid">
-    <p class="col big" id="statement">A chip is a stack of layers, and its heat has to cross every one of them. 42theory solves that stack exactly from the design alone, then works backward from what the design must meet: from a temperature limit to the power each block can still take.</p>
+    <p class="col big" id="statement">A 3-D chip is a stack of layers, and its heat has to cross every one. A CT scan is a stack of projections, and a 6 mm nodule has to survive every one of them. 42theory solves both from first principles, then works backward from what must hold: a temperature limit, a detection threshold.</p>
   </div>
 </section>
 
 <section class="steps" aria-labelledby="t-steps">
   <div class="wrap grid">
     <h2 class="side" id="t-steps">From design<br>to answer</h2>
-    <p class="col para">Three steps, the same in every problem we take on: model the physics from the design, solve it exactly, and answer the question that was asked, with the uncertainty attached. No measurement goes in.</p>
+    <p class="col para">The same three steps in every problem we take on: model the physics from the design, solve it exactly, and answer the question that was asked, with the uncertainty attached. No measurement goes in, and no training data.</p>
   </div>
   <div class="wrap">
     <ol class="three">
       <li>
-        <div class="card"><canvas class="mini" id="mini-stack" role="img" aria-label="The five-layer stack with its solved temperature."></canvas><span class="chip-l m">The design</span></div>
+        <div class="card"><div class="mini svgbox" id="mini-stack" role="img" aria-label="Temperature through the stack at the GPU's hottest point, layer by layer."></div><span class="chip-l m">The design, layer by layer</span></div>
         <span class="num">01</span>
         <h3>Model</h3>
-        <p class="m">Layers, materials, floorplan, workload and cooling become one 3-D heat equation. Inputs that are not known exactly carry a range.</p>
+        <p class="m">Layers, materials, floorplan, power and cooling for a chip; anatomy, scanner and dose for a scan. Inputs that are not known exactly carry a range.</p>
       </li>
       <li>
-        <div class="card"><canvas class="mini" id="mini-heat" role="img" aria-label="The transistor layer as solved, with the 13 block outlines and the hottest cell ringed."></canvas><span class="chip-l m">Transistor layer, solved</span></div>
+        <div class="card"><canvas class="mini" id="mini-heat" role="img" aria-label="The GPU's transistor layer as solved, with its block outlines and the hottest cell ringed."></canvas><span class="chip-l m">GPU transistors, solved</span></div>
         <span class="num">02</span>
         <h3>Solve</h3>
-        <p class="m">Exact for this geometry: heat generated equals heat removed to <span data-live="balance">3 × 10⁻¹⁴</span>, and an independent residual checks every cell.</p>
+        <p class="m">Exact for the discretized design: heat made equals heat removed to <span data-live="balance">1 × 10⁻¹²</span>, and an independent residual checks every one of <span data-live="cells">86,240</span> cells.</p>
       </li>
       <li>
-        <div class="card"><div class="mini svgbox" id="mini-bars" role="img" aria-label="Peak temperature of each block with its 95% interval, against the 85 degree limit."></div><span class="chip-l m">Headroom, with intervals</span></div>
+        <div class="card"><div class="mini svgbox" id="mini-bars" role="img" aria-label="Allowed GPU power for five stack-ups, with the 95% interval for the stacked design."></div><span class="chip-l m">Allowed power, with an interval</span></div>
         <span class="num">03</span>
         <h3>Ask</h3>
-        <p class="m">Backward from a requirement. Hold every transistor under 85 °C: this workload can rise <span data-live="head">39%</span>, between <span data-live="headlo">+17%</span> and <span data-live="headhi">+62%</span> once the uncertain inputs vary.</p>
+        <p class="m">Backward from a requirement. Hold the GPU to 95 °C and the DRAM to 95 °C: this stack can draw <span data-live="head">82%</span> of its power, between <span data-live="headlo">69%</span> and <span data-live="headhi">93%</span> once the uncertain inputs vary.</p>
       </li>
     </ol>
   </div>
@@ -125,108 +124,182 @@
 <section class="stats" aria-label="Computed in this page">
   <div class="wrap">
     <ul class="tiles">
-      <li><b class="m" data-live="tile-ms">11 ms</b><span class="m">3-D forward solve, <span data-live="cells">32,256</span> cells, timed on this device</span></li>
-      <li><b class="m" data-live="tile-bal">3 × 10⁻¹⁴</b><span class="m">energy balance error of the forward solve</span></li>
-      <li><b class="m" data-live="tile-head">+39%</b><span class="m">power this workload can add before any transistor reaches 85 °C</span></li>
-      <li><b class="m" data-live="tile-range">+17–62%</b><span class="m">95% interval on that headroom, from 200 solves with uncertain inputs</span></li>
+      <li><b class="m" data-live="tile-ms">42 ms</b><span class="m">full 3-D heat solve, <span data-live="cells">86,240</span> cells, one CPU thread on this device</span></li>
+      <li><b class="m" data-live="tile-cg">25×</b><span class="m">faster than conjugate gradients on the same system, same answer to <span data-live="cg-diff">2 × 10⁻¹¹</span></span></li>
+      <li><b class="m" data-live="tile-head">82%</b><span class="m">of the GPU's power the limits allow when the memory is stacked on it; 99.5% side by side</span></li>
+      <li><b class="m" data-live="tile-ct">3 s</b><span class="m">for a virtual trial: 200 patients scanned, reconstructed and read at 41 doses</span></li>
     </ul>
     <p class="note m">Computed when this page loaded, on your device. The values above are placeholders until then.</p>
   </div>
 </section>
 
-<section class="topic" id="chip" aria-labelledby="t-chip">
+<section class="topic" id="chips" aria-labelledby="t-chips">
   <div class="wrap grid">
-    <h2 class="side" id="t-chip">The stack</h2>
+    <h2 class="side" id="t-chips">Chips: the stack, layer by layer</h2>
     <div class="col">
-      <p class="para">Five layers sit between the coolant and the board, each with its own thickness and conductivity. Heat made in the transistors crosses all of them on its way out. These are the model's inputs, one effective value per layer.</p>
+      <p class="para">Putting memory on top of the GPU shortens every path between them, and puts eight DRAM dies between the GPU and its cooling. These are the layers of that stack as the solver sees them, bottom to top, each with its thickness, its conductivity and where the number comes from.</p>
     </div>
   </div>
   <div class="wrap grid split">
     <div class="tablewrap">
-      <table class="layers m">
-        <caption class="sr">Layers of the model, top to bottom</caption>
-        <thead><tr><th scope="col">Layer</th><th scope="col">Thickness</th><th scope="col">k in plane</th><th scope="col">k through</th><th scope="col">Range</th></tr></thead>
+      <table class="layers m" id="layer-table">
+        <caption class="sr">Layers of the memory-on-GPU stack, top to bottom</caption>
+        <thead><tr><th scope="col">Layer</th><th scope="col">Thickness</th><th scope="col">k in plane</th><th scope="col">k through</th><th scope="col">Source</th></tr></thead>
         <tbody id="layer-rows">
-          <tr><th scope="row">Silicon die</th><td>300 µm</td><td>120</td><td>120</td><td>±10%</td></tr>
-          <tr><th scope="row">Transistors</th><td>10 µm</td><td>120</td><td>120</td><td>±10%</td></tr>
-          <tr><th scope="row">Interconnect</th><td>12 µm</td><td>20</td><td>2</td><td>±30%</td></tr>
-          <tr><th scope="row">Bumps and underfill</th><td>80 µm</td><td>0.6</td><td>8</td><td>±30%</td></tr>
-          <tr><th scope="row">Package substrate</th><td>1 mm</td><td>30</td><td>0.6</td><td>fixed</td></tr>
+          <tr><th scope="row">Copper heat spreader</th><td>3 mm</td><td>390</td><td>390</td><td>UCLA</td></tr>
+          <tr><th scope="row">Thermal interface</th><td>100 µm</td><td>5</td><td>5</td><td>UCLA</td></tr>
+          <tr><th scope="row">8 DRAM dies, 8 bonds</th><td>30 + 5 µm each</td><td>140, 3.5</td><td>140, 3.5</td><td>UCLA, imec</td></tr>
+          <tr><th scope="row">Memory base die</th><td>60 µm</td><td>140</td><td>140</td><td>UCLA</td></tr>
+          <tr><th scope="row">GPU silicon, thinned</th><td>375 µm</td><td>140</td><td>140</td><td>UCLA</td></tr>
         </tbody>
       </table>
-      <p class="fine m">k in W/m·K. Backside cooled with h = 20,000 W/m²·K (±20%) to 25 °C; board side 1,000 W/m²·K. Each block's power ±10%. All layers share the 10 mm footprint, sides insulated. Ranges are what the intervals vary.</p>
+      <p class="fine m" id="layer-fine">k in W/m·K. Cooled at 7,000 W/m²·K to 45 °C over the 1,500 mm² package; the board below at 200 W/m²·K. GPU 370 W in 13 blocks and the space between them; memory 9 W in the base die and 21 W across the DRAM dies.</p>
     </div>
     <figure class="graph">
-      <div class="seg m" role="group" aria-label="Package">
-        <button type="button" data-pkg="bare" aria-pressed="true">Bare die</button>
-        <button type="button" data-pkg="lid" aria-pressed="false">With copper lid</button>
-      </div>
-      <div class="svgbox" id="g-profile" role="img" aria-label="Temperature through the stack at the hottest and coolest points."></div>
-      <figcaption class="m" id="g-profile-cap">Temperature through the stack, at the hottest and the coolest point of the die.</figcaption>
+      <div class="svgbox" id="g-profile" role="img" aria-label="Temperature through the stack at the GPU's hottest point and on average, from the board to the spreader."></div>
+      <figcaption class="m">Temperature through the stack at the GPU's hottest point (red) and averaged over the die (dark), from the board up to the spreader. Each band is a layer.</figcaption>
+    </figure>
+  </div>
+  <div class="wrap two">
+    <figure class="graph card-g">
+      <div class="svgbox" id="g-compare" role="img" aria-label="The GPU power the limits allow for five stack-ups: memory beside the GPU, memory on the GPU with microbumps or hybrid bonds, and the GPU on the memory with either bond."></div>
+      <figcaption class="m">Five stack-ups at the same 400 W, each held to 95 °C on the GPU and on every DRAM die. Bars: the share of the GPU's power the limits allow. Beside the GPU the memory is outside the solved column, so only the GPU's limit applies there.</figcaption>
+    </figure>
+    <figure class="graph card-g">
+      <div class="svgbox" id="g-heating" role="img" aria-label="Heating from cold: the GPU's hottest point and the bottom and top DRAM dies against time, on a log scale."></div>
+      <figcaption class="m">Heating from cold at full power: the GPU's hottest point and the DRAM dies nearest and farthest from it, 40 implicit steps from 1 ms to 30 s.</figcaption>
     </figure>
   </div>
   <div class="wrap grid">
     <ol class="facts m" id="chip-facts">
-      <li><span>Hottest block</span><b data-live="hot">C1, 68.2 °C</b></li>
-      <li><span>Backside range</span><b data-live="back">41.4 to 65.7 °C</b></li>
-      <li><span>Heat leaving through the backside</span><b data-live="up">98.1%</b></li>
-      <li><span>Time to 95% of steady</span><b data-live="t95">0.4 s</b></li>
+      <li><span>GPU hottest point, full power</span><b data-live="hot">GPC2, 104.9 °C</b></li>
+      <li><span>DRAM, bottom to top</span><b data-live="drams">101.9 to 96.1 °C</b></li>
+      <li><span>Heat leaving through the top</span><b data-live="up">95.0%</b></li>
+      <li><span>Time to 95% of steady</span><b data-live="t95">3.5 s</b></li>
     </ol>
   </div>
 </section>
 
-<section class="topic" id="light" aria-labelledby="t-light">
+<section class="topic" id="lab" aria-labelledby="t-lab">
   <div class="wrap grid">
-    <h2 class="side" id="t-light">What each<br>band does</h2>
+    <h2 class="side" id="t-lab">Solve backward<br>from a limit</h2>
     <div class="col">
-      <p class="para">Silicon's band gap is 1.12 eV, so light much shorter than 1.1 µm is absorbed in it and longer light passes through. Inside a chip that gives the three infrared bands three different jobs, and the solver ties each one to the heat.</p>
+      <p class="para">Heat is linear in power. So the solver runs once for each of the 14 parts of the GPU's floorplan and once for the memory, and from those 15 responses it answers backward with no new solve: how much of its power the GPU can draw before any transistor or any DRAM die reaches its limit. Change the stack, the bonds, the interface or the cooling; each answer carries a 95% interval from 200 more solves.</p>
     </div>
   </div>
-  <div class="wrap two">
-    <figure class="graph card-g">
-      <div class="svgbox" id="g-trans" role="img" aria-label="Fraction of light that crosses a 300 micrometre silicon die, from 700 to 1,450 nanometres."></div>
-      <figcaption class="m">Light that crosses the 300 µm die, one pass. Absorption only, intrinsic silicon at 300 K; reflection and doping not included. Data: Green and Keevers, 1995.</figcaption>
+  <div class="wrap">
+    <figure class="lab" id="chip-lab" aria-labelledby="lab-cap">
+      <div class="lab-bar">
+        <div class="seg m" role="group" aria-label="Stack-up">
+          <button type="button" data-stack="25d" aria-pressed="false">Beside</button>
+          <button type="button" data-stack="m3d" aria-pressed="true">Memory on GPU</button>
+          <button type="button" data-stack="g3d" aria-pressed="false">GPU on memory</button>
+        </div>
+        <div class="seg m" role="group" aria-label="Bonds between dies">
+          <button type="button" data-bond="bump" aria-pressed="true">Microbumps</button>
+          <button type="button" data-bond="hybrid" aria-pressed="false">Hybrid bonds</button>
+        </div>
+      </div>
+      <div class="lab-bar sliders">
+        <label class="slider m">Interface <input type="range" id="c-tim" min="0" max="5" step="1" value="2"> <output id="c-tim-v">5 W/m·K</output></label>
+        <label class="slider m">Cooling <input type="range" id="c-h" min="3000" max="15000" step="500" value="7000"> <output id="c-h-v">7,000 W/m²·K</output></label>
+        <label class="slider m">Coolant <input type="range" id="c-tc" min="25" max="55" step="1" value="45"> <output id="c-tc-v">45 °C</output></label>
+        <label class="slider m">GPU limit <input type="range" id="c-lim" min="85" max="110" step="1" value="95"> <output id="c-lim-v">95 °C</output></label>
+        <label class="slider m">DRAM limit <input type="range" id="c-limd" min="85" max="105" step="1" value="95"> <output id="c-limd-v">95 °C</output></label>
+      </div>
+      <div class="lab-main">
+        <div class="fieldbox"><canvas id="lab-gpu" class="rect" role="img" aria-label="The GPU's transistor layer as solved, with block outlines; the first cell to reach its limit is ringed."></canvas><p class="m fieldbox-l" id="lab-gpu-l">GPU transistors, 56 × 44 cells</p>
+          <canvas id="lab-dram" class="rect" role="img" aria-label="The DRAM die nearest the GPU, as solved."></canvas><p class="m fieldbox-l" id="lab-dram-l">DRAM die nearest the GPU</p></div>
+        <div class="svgbox bars" id="g-lab" role="img" aria-label="Peak temperature of each GPU block at full power with its 95% interval, and the limit."></div>
+        <aside class="receipt m" id="lab-receipt" aria-live="polite"><p>Solving.</p></aside>
+      </div>
+      <figcaption id="lab-cap" class="m">The limits are held at every cell of the GPU's transistor layer and of every DRAM die. The GPU's power scales together until the first cell reaches its limit; the memory's 30 W stays fixed. Intervals are the 2.5th and 97.5th percentiles of 200 solves, each drawing the cooling (±20%), the interface (±30%), the bonds (±40%), the GPU wiring (±30%), silicon (±10%), every block's power (±10%) and the memory's power (±20%). The run is a SHA-256 digest of every input.</figcaption>
     </figure>
-    <figure class="graph card-g">
-      <div class="svgbox" id="g-planck" role="img" aria-label="Thermal emission from the die backside at its coolest and hottest computed temperatures, with the long-wave band shaded."></div>
-      <figcaption class="m">Emission from the backside at the coolest and hottest temperatures solved above. Planck's law.</figcaption>
+  </div>
+</section>
+
+<section class="topic" id="health" aria-labelledby="t-health">
+  <div class="wrap grid">
+    <h2 class="side" id="t-health">Healthcare: finding cancer at the lowest dose</h2>
+    <div class="col">
+      <p class="para">Low-dose CT finds lung cancer early, and CT colonography finds polyps without a scope, but every scan is X-ray dose. The simulator builds virtual patients from tissue attenuation data, scans them with the statistics of the photons, reconstructs the slice and measures how detectable a nodule or polyp is at every dose. Across 200 virtual patients it answers what a screening protocol has to settle: how much dose detection needs, and for whom.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <figure class="lab" id="ct-lab" aria-labelledby="ct-cap">
+      <div class="lab-bar">
+        <div class="seg m" role="group" aria-label="Screening task">
+          <button type="button" data-scn="solid" aria-pressed="false">Lung: solid nodule</button>
+          <button type="button" data-scn="ggn" aria-pressed="true">Lung: ground-glass nodule</button>
+          <button type="button" data-scn="polyp" aria-pressed="false">Colon: polyp</button>
+        </div>
+        <button type="button" class="chip-b m plain" id="ct-next">Another patient</button>
+      </div>
+      <div class="lab-bar sliders">
+        <label class="slider m">Dose <input type="range" id="ct-dose" min="0" max="60" step="1" value="40" aria-describedby="ct-dose-v"> <output id="ct-dose-v">1.00 mGy</output></label>
+        <label class="slider m">Lesion <input type="range" id="ct-size" min="4" max="10" step="1" value="6"> <output id="ct-size-v">6 mm</output></label>
+        <label class="chk m"><input type="checkbox" id="ct-ring" checked> Ring the lesion</label>
+      </div>
+      <div class="lab-main ct">
+        <div class="fieldbox"><canvas id="ct-img" role="img" aria-label="The reconstructed CT slice of the virtual patient at the chosen dose."></canvas><p class="m fieldbox-l" id="ct-img-l">Reconstructed slice, 1.25 mm</p></div>
+        <div class="svgbox bars" id="g-ct" role="img" aria-label="Detectability against dose for this patient, with the band across 200 virtual patients, the detection threshold and published dose markers."></div>
+        <aside class="receipt m" id="ct-receipt" aria-live="polite"><p>Building the virtual patients.</p></aside>
+      </div>
+      <figcaption id="ct-cap" class="m">Each patient's slice is built from ellipses of tissue with NIST attenuation at 60 keV; the scan is the exact line integrals with photon noise for the dose (CTDIvol, 32 cm phantom); the solver reconstructs it by filtered back-projection. Detectability d′ is a channelized Hotelling reader, the standard model reader in CT image-quality research, with the vessels or folds around the lesion drawn again and again as anatomy. Below d′ = 5 (Rose) no reader finds the lesion reliably. The reader is ideal: it knows where to look and reads one slice, with an ideal photon-counting detector.</figcaption>
     </figure>
   </div>
   <div class="wrap grid">
     <ol class="numbered">
-      <li><span class="m">01.</span><p class="m"><b>NIR, 0.7 to 1.0 µm.</b> Absorbed within micrometres to a millimetre of silicon: 19 µm at 850 nm. Wherever it is absorbed it becomes heat, and the solver adds that heat there.</p></li>
-      <li><span class="m">02.</span><p class="m"><b>SWIR, 1.1 to 2.5 µm.</b> Crosses the silicon almost untouched. It is the band silicon photonics uses to carry data on chip, at 1.31 and 1.55 µm, and silicon's refractive index rises by 1.8 × 10⁻⁴ per kelvin, so on a chip that carries light, the temperatures solved here decide how far its optics drift.</p></li>
-      <li><span class="m">03.</span><p class="m"><b>LWIR, 8 to 14 µm.</b> The warm die emits it. At the hottest point of the back, a black surface would radiate <span data-live="rad">300 W/m²</span> to 25 °C surroundings, <span data-live="radpct">0.04%</span> of what the coolant takes there, so this model leaves emission out of the cooling and says so.</p></li>
-      <li><span class="m">04.</span><p class="m"><b>One solver for all three.</b> Absorbed light enters the solve as heat, cell by cell. Here, 1 W of 980 nm light enters the back in a 2 mm spot: <span data-live="lt-abs">94%</span> is absorbed in the silicon and the rest at the transistors. The hottest point of the chip rises <span data-live="lt-rise">0.22 K</span>, and heat in still equals heat out to <span data-live="lt-bal">3 × 10⁻¹⁴</span>.</p></li>
+      <li><span class="m">01.</span><p class="m"><b>Photons are not what limits a solid nodule.</b> Its contrast against air-filled lung is so high that an ideal reader finds it far below today's doses. Radiologists reading a chest phantom with iterative reconstruction found 95% of solid nodules at 0.03 mGy and all of them at 0.28 mGy; the screening limit is 3 mGy.</p></li>
+      <li><span class="m">02.</span><p class="m"><b>Ground-glass nodules are limited by the anatomy.</b> Their contrast against the lung is a few hundred HU, a third of the vessels around them, so the vessels, not the photons, set the limit: past a point more dose does not help, and d′ levels off at <span data-live="ggn-inf">5.3 to 7.6</span> across patients, just above the threshold. That is where 3-D reading, better reconstruction and AI readers have to earn their place.</p></li>
+      <li><span class="m">03.</span><p class="m"><b>The gap is the opportunity.</b> Between the physics floor and the dose used today lies the room that better reconstruction and readers can take. A virtual trial measures it per patient size and lesion before any patient is scanned, the way the FDA's VICTRE trial replicated a clinical trial with 2,986 virtual patients.</p></li>
     </ol>
   </div>
 </section>
 
-<section class="topic" id="limits" aria-labelledby="t-limits">
+<section class="topic" id="compete" aria-labelledby="t-compete">
   <div class="wrap grid">
-    <h2 class="side" id="t-limits">Solve backward<br>from a limit</h2>
+    <h2 class="side" id="t-compete">Where we compete</h2>
     <div class="col">
-      <p class="para">The heat in a chip is linear in its power. So the solver runs once per block, and from those 13 responses it answers backward from a requirement, with no new solve: how far the whole workload can rise, and how many watts each block can add, before any transistor reaches the limit. Each answer carries a 95% interval from 200 more solves with the uncertain inputs drawn from their ranges.</p>
+      <p class="para">Stacking made heat the constraint that decides a chip's design: without mitigation, imec's 3-D memory-on-GPU model peaked at 141.7 °C. Design loops that tie workload, power, packaging and throttling together need the thermal answer at every step, thousands of times, not once at sign-off. That loop is where we compete: the exact answer, on the hardware a team already has, in milliseconds.</p>
     </div>
   </div>
-  <div class="wrap">
-    <figure class="lab" id="lab" aria-labelledby="lab-cap">
-      <div class="lab-bar">
-        <div class="seg m" role="group" aria-label="Cooling">
-          <button type="button" data-cool="bare" aria-pressed="true">Bare die</button>
-          <button type="button" data-cool="lid" aria-pressed="false">Copper lid</button>
-        </div>
-        <label class="slider m">Limit <input type="range" id="limit" min="60" max="110" step="1" value="85" aria-describedby="limit-v"> <output id="limit-v">85 °C</output></label>
-        <button type="button" class="chip-b m" id="ranges" aria-pressed="true">Uncertain inputs</button>
-        <button type="button" class="chip-b m plain" id="reload">New workload</button>
-      </div>
-      <div class="lab-main">
-        <div class="fieldbox"><canvas id="lim-cv" role="img" aria-label="The transistor layer as solved, with block outlines; the first cell to reach the limit is ringed."></canvas><p class="m fieldbox-l" id="lim-l">Transistor layer, 48 × 48 cells</p></div>
-        <div class="svgbox bars" id="g-lim" role="img" aria-label="Peak temperature of each block with its 95% interval, the limit, and the watts each block can still add."></div>
-        <aside class="receipt m" id="receipt" aria-live="polite"><p>Solving.</p></aside>
-      </div>
-      <figcaption id="lab-cap" class="m">The limit is held at every cell of the transistor layer. Headroom scales every block's power together until the hottest cell reaches the limit; a block's watts are what that block alone can add. Intervals are the 2.5th and 97.5th percentiles of 200 solves, each drawing the cooling (±20%), the interconnect and bump conductivities (±30%), silicon's conductivity (±10%) and every block's power (±10%) from its range. The run is a SHA-256 digest of every input.</figcaption>
-    </figure>
+  <div class="wrap grid">
+    <div class="col maptable">
+      <table class="layers map four m">
+        <caption class="sr">Three ways to compute heat in a chip</caption>
+        <thead><tr><th scope="col"></th><th scope="col">Meshing solvers</th><th scope="col">Learned surrogates</th><th scope="col">42theory</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">What it computes</th><td data-label="Meshing solvers">Any 3-D geometry, forward</td><td data-label="Learned surrogates">An approximation trained on solver output, forward</td><td data-label="42theory">The exact solution of the discretized design, forward and backward</td></tr>
+          <tr><th scope="row">Hardware</th><td data-label="Meshing solvers">Workstations to clusters</td><td data-label="Learned surrogates">GPUs, to train and to run</td><td data-label="42theory">One CPU core; here, a browser tab</td></tr>
+          <tr><th scope="row">Time per answer</th><td data-label="Meshing solvers">Minutes to hours as the mesh grows</td><td data-label="Learned surrogates">Seconds, once trained</td><td data-label="42theory"><span data-live="ms">42 ms</span> for <span data-live="cells">86,240</span> cells, measured below</td></tr>
+          <tr><th scope="row">Check on each answer</th><td data-label="Meshing solvers">Convergence settings</td><td data-label="Learned surrogates">Agreement on test cases</td><td data-label="42theory">Energy balance and residual, printed with every run</td></tr>
+          <tr><th scope="row">Power the limit allows</th><td data-label="Meshing solvers">Repeated runs</td><td data-label="Learned surrogates">Repeated inference</td><td data-label="42theory">From the block responses, no new solve</td></tr>
+          <tr><th scope="row">Uncertainty</th><td data-label="Meshing solvers">Repeated runs</td><td data-label="Learned surrogates">Rarely reported</td><td data-label="42theory">200 solves, 95% interval, in about <span data-live="mc">2 s</span></td></tr>
+          <tr><th scope="row">Not yet</th><td data-label="Meshing solvers">Fast design loops</td><td data-label="Learned surrogates">A guarantee on a new design</td><td data-label="42theory">Layers that vary side to side, such as mold between chiplets: the same transform becomes a preconditioner, in development</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="wrap two fit">
+    <article class="graph card-g fitcard">
+      <h3>Chips</h3>
+      <dl class="m">
+        <dt>Who</dt><dd>Architects and thermal leads choosing a 3-D stack-up (memory on logic, chiplets, backside power) at chip makers, hyperscalers and packaging houses.</dd>
+        <dt>The job</dt><dd>Pick the stack-up and the power budget before the floorplan freezes, across thousands of options, and know how sure the answer is.</dd>
+        <dt>What they get</dt><dd>The allowed power and the layer that binds, for every option, in milliseconds, with an interval and a run record; inside their own design loop, on CPUs they already run.</dd>
+        <dt>Shown here</dt><dd>The UCLA study's design: side by side the GPU barely throttles; memory on top costs <span data-live="cost3d">18%</span> of its power; the GPU on top, hybrid bonds or better cooling win most of it back. The same ordering as the study.</dd>
+      </dl>
+    </article>
+    <article class="graph card-g fitcard">
+      <h3>Healthcare</h3>
+      <dl class="m">
+        <dt>Who</dt><dd>Protocol and reconstruction teams at CT makers, developers of AI readers who need labeled cases with known truth, and screening programs setting dose by patient size.</dd>
+        <dt>The job</dt><dd>Set the lowest dose that still finds a 6 mm nodule or polyp, for every patient size, and show it before a clinical study.</dd>
+        <dt>What they get</dt><dd>Virtual cohorts with ground truth, their reconstructions and detectability with intervals, in seconds per cohort and with a run record a reviewer can repeat.</dd>
+        <dt>Shown here</dt><dd>Screening for lung cancer (annual low-dose CT for adults 50 to 80 with a 20 pack-year history) and for colorectal cancer by CT colonography, at doses from 0.01 to 10 mGy.</dd>
+      </dl>
+    </article>
   </div>
 </section>
 
@@ -234,7 +307,7 @@
   <div class="wrap grid">
     <h2 class="side" id="t-compute">Why it is fast</h2>
     <div class="col">
-      <p class="para">Layers that are uniform side to side let a cosine transform split the 3-D problem into independent columns: <span data-live="modes">2,304</span> small tridiagonal solves, one per lateral mode. Independent solves are what a GPU runs in parallel, and batched tridiagonal solvers are standard GPU library routines.</p>
+      <p class="para">Layers that span the die let a cosine transform along each side split the 3-D problem into independent columns: <span data-live="modes">2,464</span> small tridiagonal solves of <span data-live="zcells">35</span> cells, one per lateral mode. The work grows as N log N in the number of cells, every column is independent, and nothing iterates, so the answer is exact to rounding.</p>
     </div>
   </div>
   <div class="wrap">
@@ -242,12 +315,19 @@
       <div class="svgbox" id="g-split" role="img" aria-label="Diagram: the power map is transformed into lateral modes, each mode is solved through the stack independently, and the transform is inverted to give the temperature."></div>
     </figure>
   </div>
+  <div class="wrap">
+    <figure class="lab bench" id="bench" aria-labelledby="bench-cap">
+      <div class="lab-bar"><button type="button" class="pill red" id="bench-run">Run the comparison</button><p class="m bench-s" id="bench-s">The same system, two ways, timed on this device.</p></div>
+      <div class="svgbox" id="g-bench" role="img" aria-label="Time to solve the same system by the spectral solver and by conjugate gradients."></div>
+      <figcaption id="bench-cap" class="m">The textbook iterative method for this system is conjugate gradients with a diagonal preconditioner, run here to a relative residual of 10⁻¹⁰ on the same <span data-live="unknowns">86,240</span> unknowns. Energy assumes the CPU draws 15 W while it works; it is an estimate, not a measurement.</figcaption>
+    </figure>
+  </div>
   <div class="wrap grid">
     <ol class="numbered">
-      <li><span class="m">01.</span><p class="m"><b>Forward solve: <span data-live="ms">11 ms</span></b> on this device, one CPU thread, JavaScript. Every layer, every one of <span data-live="cells">32,256</span> cells, steady state.</p></li>
-      <li><span class="m">02.</span><p class="m"><b>Transient: <span data-live="tr">0.1 s</span></b> for 108 implicit time steps from 1 ms to 4 s, the heating shown in the story.</p></li>
-      <li><span class="m">03.</span><p class="m"><b>A new workload: <span data-live="ask">0.1 ms</span></b> once the 13 block responses exist, against <span data-live="ms">11 ms</span> for a fresh solve. Each response is one forward solve; after that a workload, a limit or a sweep is a sum of 13 fields.</p></li>
-      <li><span class="m">04.</span><p class="m"><b>Intervals: <span data-live="mc">0.4 s</span></b> for 200 solves of the transistor layer, each with its own draw of the uncertain inputs. One such solve takes <span data-live="jms">2 ms</span>.</p></li>
+      <li><span class="m">01.</span><p class="m"><b>Forward solve: <span data-live="ms">42 ms</span></b> on this device, one CPU thread, JavaScript. Every layer, every one of <span data-live="cells">86,240</span> cells, steady state.</p></li>
+      <li><span class="m">02.</span><p class="m"><b>Transient: <span data-live="tr">0.3 s</span></b> for 120 implicit time steps from 1 ms to 30 s, the heating shown above.</p></li>
+      <li><span class="m">03.</span><p class="m"><b>A new workload: <span data-live="ask">1 ms</span></b> once the 15 responses exist, against <span data-live="ms">42 ms</span> for a fresh solve. After that a workload, a limit or a sweep is a sum of fields.</p></li>
+      <li><span class="m">04.</span><p class="m"><b>Intervals: <span data-live="mc">2 s</span></b> for 200 solves of the watched layers, each with its own draw of the uncertain inputs. A design sweep of 10,000 stack-ups is minutes on a laptop.</p></li>
       <li><span class="m">05.</span><p class="m"><b>Checked, not assumed.</b> An independent finite-volume residual of the full 3-D system: <span data-live="res">1 × 10⁻¹³</span>.</p></li>
     </ol>
   </div>
@@ -257,7 +337,7 @@
   <div class="wrap grid">
     <h2 class="side" id="t-research">Perimeter</h2>
     <div class="col">
-      <p class="para">The solver and our study share one piece of mathematics: a cell complex whose borders carry signs. Perimeter builds one for each picture and gives a vision transformer its regions instead of square patches. The solver builds one for each design. In both, one signed pass over the borders makes the sums exact, and the cost follows the parts, not the pixels.</p>
+      <p class="para">The solver and our study share one piece of mathematics: a cell complex whose borders carry signs. Perimeter builds one for each picture and gives a vision transformer its regions instead of square patches. The solver builds one for each floorplan. In both, one signed pass over the borders makes the sums exact, and the cost follows the parts, not the pixels.</p>
       <a class="pill line" href="#contact" data-topic="Request: the Perimeter study">Request the full study</a>
     </div>
   </div>
@@ -291,8 +371,8 @@
       </figure>
     </div>
     <figure class="graph card-g">
-      <div class="svgbox" id="g-complex" role="img" aria-label="The chip floorplan as a cell complex, regions coloured by power density, each border oriented."></div>
-      <figcaption class="m">In the solver: this chip's floorplan as the same kind of complex, <span data-live="cx-regions">14</span> regions with the frame and <span data-live="cx-borders">13</span> borders, each oriented from the lower label to the higher. One signed pass gives every block's area, centroid and second moments; largest difference from counting cells, <span data-live="cx-err">3 × 10⁻¹⁵</span>. The space between the blocks gets its area, <span data-live="cx-un">28.4 mm²</span>, by subtracting the borders it shares with them; drop the signs and the same pass gives <span data-live="cx-un-bad">171.6 mm²</span>.</figcaption>
+      <div class="svgbox" id="g-complex" role="img" aria-label="The GPU floorplan as a cell complex, regions coloured by power density, each border oriented."></div>
+      <figcaption class="m">In the solver: the GPU floorplan as the same kind of complex, <span data-live="cx-regions">15</span> regions with the frame and <span data-live="cx-borders">40</span> borders, each oriented from the lower label to the higher. One signed pass gives every block's area, centroid and second moments; largest difference from counting cells, <span data-live="cx-err">3 × 10⁻¹⁵</span>. The space between the blocks gets its area, <span data-live="cx-un">50 mm²</span>, by subtracting the borders it shares with them; drop the signs and the same pass gives <span data-live="cx-un-bad">1,600 mm²</span>.</figcaption>
     </figure>
   </div>
   <div class="wrap grid">
@@ -301,19 +381,12 @@
         <caption class="sr">The same mathematics in the study and in the solver</caption>
         <thead><tr><th scope="col"></th><th scope="col">In the study</th><th scope="col">In the solver</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Signed borders</th><td data-label="In the study">One pass recovers each region's exact area, centroid and second moments; without signs, two different regions can get the same inputs (Proposition 1).</td><td data-label="In the solver">Each face's heat leaves one cell with a plus and enters the next with a minus, so inside the die every border cancels: heat in equals heat out to <span data-live="balance">3 × 10⁻¹⁴</span>.</td></tr>
-          <tr><th scope="row">Parts, not pixels</th><td data-label="In the study">Region counts stay at 13.0 to 14.4 from 64 to 1,024 px, while patches grow with the square of the side (Proposition 2).</td><td data-label="In the solver">One solve per block, then any workload or limit is a sum of 13 fields. Area turns power into density: the GPU draws the most, <span data-live="gpu-w">14 W</span> over <span data-live="gpu-a">15.8 mm²</span>, but <span data-live="bind">C1</span> runs hottest at <span data-live="dens-hot">1.38</span> W/mm², <span data-live="dens-x">1.6</span> times the GPU's density.</td></tr>
+          <tr><th scope="row">Signed borders</th><td data-label="In the study">One pass recovers each region's exact area, centroid and second moments; without signs, two different regions can get the same inputs (Proposition 1).</td><td data-label="In the solver">Each face's heat leaves one cell with a plus and enters the next with a minus, so inside the stack every border cancels: heat in equals heat out to <span data-live="balance">1 × 10⁻¹²</span>.</td></tr>
+          <tr><th scope="row">Parts, not pixels</th><td data-label="In the study">Region counts stay at 13.0 to 14.4 from 64 to 1,024 px, while patches grow with the square of the side (Proposition 2).</td><td data-label="In the solver">One solve per part of the floorplan, then any workload or limit is a sum of 15 fields. Area turns power into density: <span data-live="dens-top">GPC0</span> draws <span data-live="dens-w">39 W</span> over <span data-live="dens-a">71.7 mm²</span>, <span data-live="dens">0.54</span> W/mm².</td></tr>
           <tr><th scope="row">Region tokens</th><td data-label="In the study">+1.8 points top-1 over plain patches on all three seeds, with 69% of the multiply-adds (Imagewoof, 128 px, CPU pilot).</td><td data-label="In the solver">Next, not yet built: a learned model that reads a design as parts, with every answer checked by the exact solver's residual before it is used.</td></tr>
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="wrap grid">
-    <ol class="numbered">
-      <li><span class="m">01.</span><p class="m"><b>Proved.</b> The signed pass recovers exact area, centroid and second moments, for any orientation of the borders. Without signs, two different regions can give the same inputs.</p></li>
-      <li><span class="m">02.</span><p class="m"><b>Found.</b> Region tokens beat patch tokens by 1.8 points on every seed with 69% of the multiply-adds, and every region variant beat every patch variant, token merging included.</p></li>
-      <li><span class="m">03.</span><p class="m"><b>Not yet shown.</b> A gain from the signs themselves: 0.25 points, inside seed noise. On a CPU the pilot ran at 349 images/s against 704. GPU throughput is measured on our H100 runs, not claimed here.</p></li>
-    </ol>
   </div>
 </section>
 
@@ -321,7 +394,7 @@
   <div class="wrap grid">
     <h2 class="side" id="t-film">The film</h2>
     <div class="col">
-      <p class="para">The worked example as a short film: the stack, the heat, the three bands and the limit, drawn from the same solver as the page.</p>
+      <p class="para">Both problems in two minutes: the stack and its heat, the limit and the answer, then the scan, its reconstruction and the dose. Drawn frame by frame from the same solvers as the page.</p>
     </div>
   </div>
   <div class="wrap">
@@ -345,7 +418,7 @@
     <div class="arrow" aria-hidden="true"><svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 24h34M28 11l13 13-13 13" fill="none" stroke="currentColor" stroke-width="4.5"/></svg></div>
     <div class="col">
       <h2 id="t-contact">Bring the design<br>you need to trust.</h2>
-      <p class="para small">Ask about the study, the solver, or a problem of your own. Messages go to <a href="mailto:hi@42theory.com">hi@42theory.com</a>.</p>
+      <p class="para small">A stack-up to choose, a protocol to justify, or the study itself. Messages go to <a href="mailto:hi@42theory.com">hi@42theory.com</a>.</p>
       <form class="form" id="form" action="https://formsubmit.co/hi@42theory.com" method="POST" novalidate>
         <input type="hidden" name="_subject" value="42theory.com: new message" id="f-subject">
         <input type="hidden" name="_template" value="table">
@@ -368,9 +441,17 @@
   <div class="wrap grid">
     <h2 class="side" id="t-sources">Sources</h2>
     <ol class="col m refs">
-      <li>M. A. Green and M. J. Keevers, Optical properties of intrinsic silicon at 300 K, Progress in Photovoltaics 3, 189–192, 1995. <a href="https://www.pveducation.org/id/node/1004">Table via PVEducation</a>.</li>
-      <li>J. Komma et al., <a href="https://doi.org/10.1063/1.4738989">Thermo-optic coefficient of silicon at 1550 nm and cryogenic temperatures</a>, Applied Physics Letters 101, 041905, 2012.</li>
-      <li>NVIDIA, <a href="https://docs.nvidia.com/cuda/cusolverdx/0.4.0/get_started/functions/gtsv.html">cuSolverDx gtsv</a>: batched tridiagonal solves on the GPU.</li>
+      <li>D. Ray, G. Karfakis, A. Graening, D. Ratchkov, P. Gupta, <a href="https://nanocad.ee.ucla.edu/wp-content/papercite-data/pdf/c137.pdf">Thermally-aware system-technology co-optimization for AI systems</a>, UCLA, 2026. The design: GPU, memory stacks, powers, package, cooling, layer thicknesses, limits and refresh trip points.</li>
+      <li>imec, Thermal impact of frontside and backside power delivery in 3-D system-in-package, arXiv 2508.02284, 2025, Table I: conductivities of substrate, bumps, underfill and wiring.</li>
+      <li>imec, <a href="https://imec-publications.be/handle/20.500.12860/60081">Breaking the thermal bottleneck in 3-D HBM-on-GPU integration via system-technology co-optimization</a>, IEDM 2025: 141.7 °C peak without mitigation.</li>
+      <li>Lee, Kim, Lee, Rhi, Thermal issues related to hybrid bonding of 3-D-stacked HBM, Electronics 14, 2682, 2025: hybrid bonds conduct up to 3 times better than microbumps.</li>
+      <li>J. H. Hubbell and S. M. Seltzer, <a href="https://physics.nist.gov/PhysRefData/XrayMassCoef/">X-ray mass attenuation coefficients</a>, NIST: tissues and air at 60 keV.</li>
+      <li>AAPM, <a href="https://www.aapm.org/pubs/ctprotocols/documents/lungcancerscreeningct.pdf">Lung cancer screening CT protocols</a>, version 6.0, 2023: CTDIvol under 3.0 mGy for a standard-sized patient.</li>
+      <li>K. Martini et al., <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4984934">Ultralow-dose CT with tin filtration for detection of solid and sub-solid pulmonary nodules: a phantom study</a>, British Journal of Radiology 88, 20150389, 2015.</li>
+      <li>E. G. McFarland et al., <a href="https://profiles.wustl.edu/en/publications/acr-colon-cancer-committee-white-paper-status-of-ct-colonography-/">ACR Colon Cancer Committee white paper: status of CT colonography 2009</a>, Journal of the American College of Radiology 6(11), 756–772, 2009: CTDIvol at most 12.5 mGy per screening examination, 6.25 mGy per position.</li>
+      <li>US Preventive Services Task Force, <a href="https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening">Lung cancer screening</a>, 2021: annual low-dose CT for adults 50 to 80 with a 20 pack-year history.</li>
+      <li>A. Badano et al., <a href="https://doi.org/10.1001/jamanetworkopen.2018.5474">Evaluation of digital breast tomosynthesis as replacement of full-field digital mammography using an in silico imaging trial</a>, JAMA Network Open 1(7), e185474, 2018 (VICTRE).</li>
+      <li>AAPM Report 96, The measurement, reporting and management of radiation dose in CT, 2008: effective dose per dose-length product.</li>
       <li>F. Alsehami, Perimeter: the complete study, 42theory, 2026. Available on request.</li>
     </ol>
   </div>
@@ -382,15 +463,15 @@
   <div class="wrap grid">
     <a class="logo" href="#top" aria-label="42theory, back to top"><img src="assets/42theory-lockup.svg" alt="42theory" width="207" height="52"></a>
     <nav class="cols m" aria-label="Footer">
-      <div><h3>Use case</h3><a href="#chip">The stack</a><a href="#light">Light</a><a href="#limits">Limits</a><a href="#compute">Compute</a></div>
-      <div><h3>Research</h3><a href="#research">Perimeter</a><a href="#film">Film</a><a href="#contact" data-topic="Request: the Perimeter study">Request the study</a></div>
+      <div><h3>Solvers</h3><a href="#chips">Chips</a><a href="#lab">Chip solver</a><a href="#health">CT simulator</a><a href="#compute">Compute</a></div>
+      <div><h3>Company</h3><a href="#compete">Where we compete</a><a href="#research">Perimeter</a><a href="#film">Film</a><a href="#contact" data-topic="Request: the Perimeter study">Request the study</a></div>
       <div><h3>Contact</h3><a href="mailto:hi@42theory.com">hi@42theory.com</a><a href="#contact">Write to us</a></div>
     </nav>
-    <p class="copy m">© 2026 42theory. Software only: simulation and solvers for heat and light.</p>
+    <p class="copy m">© 2026 42theory. Software only: solvers and simulators. Not a medical device; the CT simulator is for research and design.</p>
   </div>
 </footer>
 
-<script src="assets/42theory.js?v=f41d9801" defer></script>
-<script type="module" src="assets/42theory-story.js?v=3d737c63"></script>
+<script src="assets/42theory.js?v=373dc6ae" defer></script>
+<script type="module" src="assets/42theory-story.js?v=427395ca"></script>
 </body>
 </html>
