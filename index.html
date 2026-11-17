@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; media-src 'self'; connect-src 'self' https://formsubmit.co; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; media-src 'self'; connect-src 'self' https://formsubmit.co; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>42theory: physics on demand, with error bars</title>
 <meta name="description" content="42theory builds solvers for heat and light. Worked example: recover the power of every block in a chip from an infrared image of its backside, with a 95% interval on each number, computed live in the page.">
@@ -18,7 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Geist+Mono:wght@300..500&amp;display=swap">
-<link rel="stylesheet" href="assets/42theory.css">
+<link rel="stylesheet" href="assets/42theory.css?v=bb730024">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" integrity="sha384-IDC7sAMAIMB/TZ6dgKKPPAKZ2bXXXP8+FBMBC8cU319eBhKITx+PaalhfDkDNH28" crossorigin="anonymous">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -50,26 +51,40 @@
 
 <main id="main">
 
-<section class="hero" aria-labelledby="t-hero">
-  <div class="wrap grid">
-    <p class="meta m">Worked example<br>Flip-chip die<br>10&nbsp;×&nbsp;10&nbsp;mm, 56.6&nbsp;W</p>
-    <div class="col">
+<section class="story" id="story" aria-labelledby="t-hero">
+  <div class="story-sticky">
+    <canvas id="story-gl" aria-hidden="true"></canvas>
+    <canvas id="story-ov" aria-hidden="true"></canvas>
+    <div class="story-labels" id="story-labels" aria-hidden="true"></div>
+    <div class="story-tags" id="story-tags" aria-hidden="true"></div>
+    <div class="story-hero" id="story-hero">
       <h1 id="t-hero">Physics on demand.<br>With error bars.</h1>
       <p class="lead">42theory builds solvers for heat and light. Here the problem is a chip: from an infrared image of its back, recover the power of every block inside it, with an interval on each number.</p>
       <div class="cta">
         <a class="pill red" href="#inverse">Run the inverse</a>
         <a class="pill line" href="#contact">Talk to a scientist</a>
       </div>
+      <p class="meta m">Worked example: a flip-chip die, 10&nbsp;×&nbsp;10&nbsp;mm, 56.6&nbsp;W</p>
     </div>
+    <ol class="story-steps m" id="story-steps" aria-label="Story steps">
+      <li><button type="button">Board</button></li><li><button type="button">Package</button></li><li><button type="button">Layers</button></li><li><button type="button">Heat</button></li><li><button type="button">Light</button></li><li><button type="button">Inverse</button></li><li><button type="button">Answer</button></li>
+    </ol>
+    <div class="story-text" id="story-text" aria-live="polite"><h2 id="story-title"></h2><p class="m" id="story-sub"></p><a class="pill red" id="story-cta" href="#inverse" hidden>Run the inverse yourself</a></div>
+    <div class="story-bar m" id="story-bar" aria-hidden="true"><span id="bar-lo">40 °C</span><i></i><span id="bar-hi">68 °C</span></div>
+    <div class="story-scale m" id="story-scale" aria-hidden="true"><i></i><span>10 mm</span></div>
+    <p class="story-hint m" aria-hidden="true">Scroll to take the chip apart</p>
   </div>
-  <div class="wrap">
+</section>
+<noscript><style>.story{height:auto}.story-sticky{position:relative;height:auto;overflow:visible;background:none}.story canvas,.story-steps,.story-text,.story-bar,.story-scale,.story-hint,.story-note{display:none}.story-hero{position:relative;left:auto;top:auto;padding:120px var(--pad) 40px;max-width:none}</style></noscript>
+<div class="wrap story-note"><p class="m">Rendered live in your browser from the solver on this page. Side to side the parts are to scale; layer thicknesses are stretched so each one reads, and wiring patterns are drawn, not traced from a real layout. The labels give the values the model uses, and the model gives every layer the die's 10 × 10 mm footprint. The chip is synthetic, so the true answer is known.</p></div>
+<div class="wrap" id="story-fallback" hidden>
     <figure class="stage" aria-labelledby="hero-cap">
       <canvas id="hero-cv" role="img" aria-label="An exploded chip stack: package substrate, bumps, interconnect, transistors and silicon. Heat spreads from 13 powered blocks; near, short-wave and long-wave infrared meet the silicon; then the 13 block powers are recovered from the backside temperature with 95% intervals.">A chip stack, its heat, and the recovered block powers.</canvas>
       <button type="button" class="stage-btn m" id="hero-pause" aria-pressed="false">Pause</button>
       <figcaption class="m" id="hero-cap">Computed in your browser: a 3-D heat solve on 48 × 48 × 14 cells, steady and transient, then a least-squares inverse from the backside temperature with 50 mK of camera noise. The chip is synthetic: its floorplan and workload are invented, so the true answer is known.</figcaption>
     </figure>
-  </div>
-</section>
+</div>
+
 
 <section class="statement" aria-label="What 42theory does">
   <canvas class="field" id="field-cv" aria-hidden="true"></canvas>
@@ -357,6 +372,7 @@
   </div>
 </footer>
 
-<script src="assets/42theory.js" defer></script>
+<script src="assets/42theory.js?v=2511660f" defer></script>
+<script type="module" src="assets/42theory-story.js?v=bd5ca37c"></script>
 </body>
 </html>
