@@ -5,10 +5,10 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; media-src 'self'; connect-src 'self' https://formsubmit.co; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>42theory: physics on demand, with error bars</title>
-<meta name="description" content="42theory builds solvers for heat and light. Worked example: recover the power of every block in a chip from an infrared image of its backside, with a 95% interval on each number, computed live in the page.">
+<meta name="description" content="42theory builds solvers for heat and light. Worked example: a chip's heat solved exactly in 3-D, then backward from an 85 °C limit to the power every block can still take, with 95% intervals and a receipt, computed live in the page.">
 <link rel="canonical" href="https://42theory.com/">
 <meta property="og:title" content="42theory: physics on demand, with error bars">
-<meta property="og:description" content="From an infrared image of a chip's backside to the power of every block inside it, with intervals. Solved live in the page.">
+<meta property="og:description" content="A chip's heat, solved exactly and then backward from a temperature limit, with intervals and a receipt. Solved live in the page.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://42theory.com/">
 <meta name="theme-color" content="#FAFAF8">
@@ -18,14 +18,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Geist+Mono:wght@300..500&amp;display=swap">
-<link rel="stylesheet" href="assets/42theory.css?v=70ef1b8e">
+<link rel="stylesheet" href="assets/42theory.css?v=23f01a1a">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" integrity="sha384-IDC7sAMAIMB/TZ6dgKKPPAKZ2bXXXP8+FBMBC8cU319eBhKITx+PaalhfDkDNH28" crossorigin="anonymous">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="notice" id="notice">
-  <p class="m">Worked example: a chip's heat, solved forward and backward in this page. <a href="#inverse">Run the inverse</a></p>
+  <p class="m">Worked example: a chip's heat, solved forward and backward in this page. <a href="#limits">Run the solver</a></p>
   <button type="button" class="notice-x" id="notice-x" aria-label="Dismiss this notice"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor"/><path d="M7 7l6 6M13 7l-6 6" stroke="currentColor" stroke-linecap="round"/></svg></button>
 </div>
 
@@ -36,7 +36,7 @@
       <ul class="m">
         <li><a href="#chip">Use case</a></li>
         <li><a href="#light">Light</a></li>
-        <li><a href="#inverse">Inverse</a></li>
+        <li><a href="#limits">Limits</a></li>
         <li><a href="#compute">Compute</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#film">Film</a></li>
@@ -59,29 +59,29 @@
     <div class="story-tags" id="story-tags" aria-hidden="true"></div>
     <div class="story-hero" id="story-hero">
       <h1 id="t-hero">Physics on demand.<br>With error bars.</h1>
-      <p class="lead">42theory builds solvers for heat and light. Here the problem is a chip: from an infrared image of its back, recover the power of every block inside it, with an interval on each number.</p>
+      <p class="lead">42theory builds solvers for heat and light. Here the design is a chip: from its layers, materials and workload, the solver finds the temperature of every block and how much more power each can take, with an interval on every number.</p>
       <div class="cta">
-        <a class="pill red" href="#inverse">Run the inverse</a>
+        <a class="pill red" href="#limits">Run the solver</a>
         <a class="pill line" href="#contact">Talk to a scientist</a>
       </div>
       <p class="meta m">Worked example: a flip-chip die, 10&nbsp;×&nbsp;10&nbsp;mm, 56.6&nbsp;W</p>
     </div>
     <ol class="story-steps m" id="story-steps" aria-label="Story steps">
-      <li><button type="button">Board</button></li><li><button type="button">Package</button></li><li><button type="button">Layers</button></li><li><button type="button">Heat</button></li><li><button type="button">Light</button></li><li><button type="button">Inverse</button></li><li><button type="button">Answer</button></li>
+      <li><button type="button">Board</button></li><li><button type="button">Package</button></li><li><button type="button">Layers</button></li><li><button type="button">Heat</button></li><li><button type="button">Light</button></li><li><button type="button">Limit</button></li><li><button type="button">Answer</button></li>
     </ol>
-    <div class="story-text" id="story-text" aria-live="polite"><h2 id="story-title"></h2><p class="m" id="story-sub"></p><a class="pill red" id="story-cta" href="#inverse" hidden>Run the inverse yourself</a></div>
+    <div class="story-text" id="story-text" aria-live="polite"><h2 id="story-title"></h2><p class="m" id="story-sub"></p><a class="pill red" id="story-cta" href="#limits" hidden>Run the solver yourself</a></div>
     <div class="story-bar m" id="story-bar" aria-hidden="true"><span id="bar-lo">40 °C</span><i></i><span id="bar-hi">68 °C</span></div>
     <div class="story-scale m" id="story-scale" aria-hidden="true"><i></i><span>10 mm</span></div>
     <p class="story-hint m" aria-hidden="true">Scroll to take the chip apart</p>
   </div>
 </section>
 <noscript><style>.story{height:auto}.story-sticky{position:relative;height:auto;overflow:visible;background:none}.story canvas,.story-steps,.story-text,.story-bar,.story-scale,.story-hint,.story-note{display:none}.story-hero{position:relative;left:auto;top:auto;padding:120px var(--pad) 40px;max-width:none}</style></noscript>
-<div class="wrap story-note"><p class="m">Rendered live in your browser from the solver on this page. Side to side the parts are to scale; layer thicknesses are stretched so each one reads, and wiring patterns are drawn, not traced from a real layout. The labels give the values the model uses, and the model gives every layer the die's 10 × 10 mm footprint. The chip is synthetic, so the true answer is known.</p></div>
+<div class="wrap story-note"><p class="m">Rendered live in your browser from the solver on this page. Side to side the parts are to scale; layer thicknesses are stretched so each one reads, and wiring patterns are drawn, not traced from a real layout. The labels give the values the model uses, and the model gives every layer the die's 10 × 10 mm footprint. The chip is synthetic: its floorplan and workload are invented, the physics is not.</p></div>
 <div class="wrap" id="story-fallback" hidden>
     <figure class="stage" aria-labelledby="hero-cap">
-      <canvas id="hero-cv" role="img" aria-label="An exploded chip stack: package substrate, bumps, interconnect, transistors and silicon. Heat spreads from 13 powered blocks; near, short-wave and long-wave infrared meet the silicon; then the 13 block powers are recovered from the backside temperature with 95% intervals.">A chip stack, its heat, and the recovered block powers.</canvas>
+      <canvas id="hero-cv" role="img" aria-label="An exploded chip stack: package substrate, bumps, interconnect, transistors and silicon. Heat spreads from 13 powered blocks; near, short-wave and long-wave infrared meet the silicon; then every block's peak temperature is held against an 85 °C limit, with 95% intervals.">A chip stack, its heat, and the headroom to its limit.</canvas>
       <button type="button" class="stage-btn m" id="hero-pause" aria-pressed="false">Pause</button>
-      <figcaption class="m" id="hero-cap">Computed in your browser: a 3-D heat solve on 48 × 48 × 14 cells, steady and transient, then a least-squares inverse from the backside temperature with 50 mK of camera noise. The chip is synthetic: its floorplan and workload are invented, so the true answer is known.</figcaption>
+      <figcaption class="m" id="hero-cap">Computed in your browser: a 3-D heat solve on 48 × 48 × 14 cells, steady and transient, then the headroom to an 85 °C limit, with 95% intervals from 200 solves with uncertain inputs. The chip is synthetic: its floorplan and workload are invented.</figcaption>
     </figure>
 </div>
 
@@ -89,46 +89,46 @@
 <section class="statement" aria-label="What 42theory does">
   <canvas class="field" id="field-cv" aria-hidden="true"></canvas>
   <div class="wrap grid">
-    <p class="col big" id="statement">A chip is a stack of layers, and its heat has to cross every one of them. 42theory solves that stack exactly, then runs it backward: from what a camera sees on the surface to what each block underneath is doing.</p>
+    <p class="col big" id="statement">A chip is a stack of layers, and its heat has to cross every one of them. 42theory solves that stack exactly from the design alone, then works backward from what the design must meet: from a temperature limit to the power each block can still take.</p>
   </div>
 </section>
 
 <section class="steps" aria-labelledby="t-steps">
   <div class="wrap grid">
-    <h2 class="side" id="t-steps">From surface<br>to answer</h2>
-    <p class="col para">Three steps, the same in every problem we take on: model the physics, measure what can be measured, and solve backward for what cannot, with the uncertainty attached.</p>
+    <h2 class="side" id="t-steps">From design<br>to answer</h2>
+    <p class="col para">Three steps, the same in every problem we take on: model the physics from the design, solve it exactly, and answer the question that was asked, with the uncertainty attached. No measurement goes in.</p>
   </div>
   <div class="wrap">
     <ol class="three">
       <li>
-        <div class="card"><canvas class="mini" id="mini-stack" role="img" aria-label="The five-layer stack with its solved temperature."></canvas><span class="chip-l m">Forward model</span></div>
+        <div class="card"><canvas class="mini" id="mini-stack" role="img" aria-label="The five-layer stack with its solved temperature."></canvas><span class="chip-l m">The design</span></div>
         <span class="num">01</span>
         <h3>Model</h3>
-        <p class="m">Layers, materials and sources become one 3-D heat equation. For this geometry the solve is exact: heat generated equals heat removed to <span data-live="balance">3 × 10⁻¹⁴</span>.</p>
+        <p class="m">Layers, materials, floorplan, workload and cooling become one 3-D heat equation. Inputs that are not known exactly carry a range.</p>
       </li>
       <li>
-        <div class="card"><canvas class="mini" id="mini-cam" role="img" aria-label="The backside as a thermal camera records it, 48 by 48 pixels, with the 13 block outlines."></canvas><span class="chip-l m">Infrared image</span></div>
+        <div class="card"><canvas class="mini" id="mini-heat" role="img" aria-label="The transistor layer as solved, with the 13 block outlines and the hottest cell ringed."></canvas><span class="chip-l m">Transistor layer, solved</span></div>
         <span class="num">02</span>
-        <h3>Measure</h3>
-        <p class="m">A thermal camera images the backside through an infrared-transparent window: <span data-live="pixels">2,304</span> pixels with 50 mK of noise.</p>
+        <h3>Solve</h3>
+        <p class="m">Exact for this geometry: heat generated equals heat removed to <span data-live="balance">3 × 10⁻¹⁴</span>, and an independent residual checks every cell.</p>
       </li>
       <li>
-        <div class="card"><div class="mini svgbox" id="mini-bars" role="img" aria-label="Recovered block powers beside the true values."></div><span class="chip-l m">Answer with intervals</span></div>
+        <div class="card"><div class="mini svgbox" id="mini-bars" role="img" aria-label="Peak temperature of each block with its 95% interval, against the 85 degree limit."></div><span class="chip-l m">Headroom, with intervals</span></div>
         <span class="num">03</span>
-        <h3>Invert</h3>
-        <p class="m">The solver finds the 13 block powers that explain the image and states a 95% interval for each. <span data-live="cover">13 of 13</span> intervals hold the true value.</p>
+        <h3>Ask</h3>
+        <p class="m">Backward from a requirement. Hold every transistor under 85 °C: this workload can rise <span data-live="head">39%</span>, between <span data-live="headlo">+17%</span> and <span data-live="headhi">+62%</span> once the uncertain inputs vary.</p>
       </li>
     </ol>
   </div>
 </section>
 
-<section class="stats" aria-label="Measured in this page">
+<section class="stats" aria-label="Computed in this page">
   <div class="wrap">
     <ul class="tiles">
-      <li><b class="m" data-live="tile-px">13</b><span class="m">block powers recovered from <span data-live="pixels">2,304</span> camera pixels</span></li>
-      <li><b class="m" data-live="tile-ci">±4 mW</b><span class="m">widest 95% interval on a core, at 50 mK noise</span></li>
+      <li><b class="m" data-live="tile-ms">11 ms</b><span class="m">3-D forward solve, <span data-live="cells">32,256</span> cells, timed on this device</span></li>
       <li><b class="m" data-live="tile-bal">3 × 10⁻¹⁴</b><span class="m">energy balance error of the forward solve</span></li>
-      <li><b class="m" data-live="tile-ms">11 ms</b><span class="m">3-D forward solve, timed on this device</span></li>
+      <li><b class="m" data-live="tile-head">+39%</b><span class="m">power this workload can add before any transistor reaches 85 °C</span></li>
+      <li><b class="m" data-live="tile-range">+17–62%</b><span class="m">95% interval on that headroom, from 200 solves with uncertain inputs</span></li>
     </ul>
     <p class="note m">Computed when this page loaded, on your device. The values above are placeholders until then.</p>
   </div>
@@ -145,16 +145,16 @@
     <div class="tablewrap">
       <table class="layers m">
         <caption class="sr">Layers of the model, top to bottom</caption>
-        <thead><tr><th scope="col">Layer</th><th scope="col">Thickness</th><th scope="col">k in plane</th><th scope="col">k through</th></tr></thead>
+        <thead><tr><th scope="col">Layer</th><th scope="col">Thickness</th><th scope="col">k in plane</th><th scope="col">k through</th><th scope="col">Range</th></tr></thead>
         <tbody id="layer-rows">
-          <tr><th scope="row">Silicon die</th><td>300 µm</td><td>120</td><td>120</td></tr>
-          <tr><th scope="row">Transistors</th><td>10 µm</td><td>120</td><td>120</td></tr>
-          <tr><th scope="row">Interconnect</th><td>12 µm</td><td>20</td><td>2</td></tr>
-          <tr><th scope="row">Bumps and underfill</th><td>80 µm</td><td>0.6</td><td>8</td></tr>
-          <tr><th scope="row">Package substrate</th><td>1 mm</td><td>30</td><td>0.6</td></tr>
+          <tr><th scope="row">Silicon die</th><td>300 µm</td><td>120</td><td>120</td><td>±10%</td></tr>
+          <tr><th scope="row">Transistors</th><td>10 µm</td><td>120</td><td>120</td><td>±10%</td></tr>
+          <tr><th scope="row">Interconnect</th><td>12 µm</td><td>20</td><td>2</td><td>±30%</td></tr>
+          <tr><th scope="row">Bumps and underfill</th><td>80 µm</td><td>0.6</td><td>8</td><td>±30%</td></tr>
+          <tr><th scope="row">Package substrate</th><td>1 mm</td><td>30</td><td>0.6</td><td>fixed</td></tr>
         </tbody>
       </table>
-      <p class="fine m">k in W/m·K. Backside cooled with h = 20,000 W/m²·K to 25 °C; board side 1,000 W/m²·K. All layers share the 10 mm footprint, sides insulated.</p>
+      <p class="fine m">k in W/m·K. Backside cooled with h = 20,000 W/m²·K (±20%) to 25 °C; board side 1,000 W/m²·K. Each block's power ±10%. All layers share the 10 mm footprint, sides insulated. Ranges are what the intervals vary.</p>
     </div>
     <figure class="graph">
       <div class="seg m" role="group" aria-label="Package">
@@ -177,9 +177,9 @@
 
 <section class="topic" id="light" aria-labelledby="t-light">
   <div class="wrap grid">
-    <h2 class="side" id="t-light">What each<br>band sees</h2>
+    <h2 class="side" id="t-light">What each<br>band does</h2>
     <div class="col">
-      <p class="para">Silicon's band gap is 1.12 eV, so light much shorter than 1.1 µm is absorbed in it and longer light passes through. That turns the infrared into three different instruments.</p>
+      <p class="para">Silicon's band gap is 1.12 eV, so light much shorter than 1.1 µm is absorbed in it and longer light passes through. Inside a chip that gives the three infrared bands three different jobs, and the solver ties each one to the heat.</p>
     </div>
   </div>
   <div class="wrap two">
@@ -194,38 +194,38 @@
   </div>
   <div class="wrap grid">
     <ol class="numbered">
-      <li><span class="m">01.</span><p class="m"><b>NIR, 0.7 to 1.0 µm.</b> Absorbed within micrometres to millimetres of silicon: 19 µm at 850 nm. It reports on the surface it lands on, not on what lies under the die.</p></li>
-      <li><span class="m">02.</span><p class="m"><b>SWIR, 1.1 to 2.5 µm.</b> Crosses the silicon. From the backside it images the wiring and bumps under the transistors, which is how flip-chip dies are inspected without opening them.</p></li>
-      <li><span class="m">03.</span><p class="m"><b>LWIR, 8 to 14 µm.</b> The warm die emits it. A thermal camera reads the backside temperature, and lock-in thermography finds faults by the heat they make.</p></li>
-      <li><span class="m">04.</span><p class="m"><b>One solver for all three.</b> Absorbed light becomes heat, and heat sets emission. Radiative transfer and heat conduction share one model and one receipt.</p></li>
+      <li><span class="m">01.</span><p class="m"><b>NIR, 0.7 to 1.0 µm.</b> Absorbed within micrometres to a millimetre of silicon: 19 µm at 850 nm. Wherever it is absorbed it becomes heat, and the solver adds that heat there.</p></li>
+      <li><span class="m">02.</span><p class="m"><b>SWIR, 1.1 to 2.5 µm.</b> Crosses the silicon almost untouched. It is the band silicon photonics uses to carry data on chip, at 1.31 and 1.55 µm, and silicon's refractive index rises by 1.8 × 10⁻⁴ per kelvin, so on a chip that carries light, the temperatures solved here decide how far its optics drift.</p></li>
+      <li><span class="m">03.</span><p class="m"><b>LWIR, 8 to 14 µm.</b> The warm die emits it. At the hottest point of the back, a black surface would radiate <span data-live="rad">300 W/m²</span> to 25 °C surroundings, <span data-live="radpct">0.04%</span> of what the coolant takes there, so this model leaves emission out of the cooling and says so.</p></li>
+      <li><span class="m">04.</span><p class="m"><b>One solver for all three.</b> Absorbed light enters the solve as heat, cell by cell. Here, 1 W of 980 nm light enters the back in a 2 mm spot: <span data-live="lt-abs">94%</span> is absorbed in the silicon and the rest at the transistors. The hottest point of the chip rises <span data-live="lt-rise">0.22 K</span>, and heat in still equals heat out to <span data-live="lt-bal">3 × 10⁻¹⁴</span>.</p></li>
     </ol>
   </div>
 </section>
 
-<section class="topic" id="inverse" aria-labelledby="t-inverse">
+<section class="topic" id="limits" aria-labelledby="t-limits">
   <div class="wrap grid">
-    <h2 class="side" id="t-inverse">Run it<br>backward</h2>
+    <h2 class="side" id="t-limits">Solve backward<br>from a limit</h2>
     <div class="col">
-      <p class="para">IBM mapped power on a PowerPC processor this way: image the backside through an infrared-transparent heat sink, write the temperature as a sum of each block's own heat field, and solve for the powers. Here it runs live, with intervals and a check that says when not to trust them.</p>
+      <p class="para">The heat in a chip is linear in its power. So the solver runs once per block, and from those 13 responses it answers backward from a requirement, with no new solve: how far the whole workload can rise, and how many watts each block can add, before any transistor reaches the limit. Each answer carries a 95% interval from 200 more solves with the uncertain inputs drawn from their ranges.</p>
     </div>
   </div>
   <div class="wrap">
     <figure class="lab" id="lab" aria-labelledby="lab-cap">
       <div class="lab-bar">
-        <div class="seg m" role="group" aria-label="What the camera sees">
-          <button type="button" data-cam="bare" aria-pressed="true">Bare die</button>
-          <button type="button" data-cam="lid" aria-pressed="false">Copper lid</button>
+        <div class="seg m" role="group" aria-label="Cooling">
+          <button type="button" data-cool="bare" aria-pressed="true">Bare die</button>
+          <button type="button" data-cool="lid" aria-pressed="false">Copper lid</button>
         </div>
-        <label class="slider m">Camera noise <input type="range" id="noise" min="10" max="200" step="10" value="50" aria-describedby="noise-v"> <output id="noise-v">50 mK</output></label>
-        <button type="button" class="chip-b m" id="wrong" aria-pressed="false">Model error: cooling 30% too weak</button>
+        <label class="slider m">Limit <input type="range" id="limit" min="60" max="110" step="1" value="85" aria-describedby="limit-v"> <output id="limit-v">85 °C</output></label>
+        <button type="button" class="chip-b m" id="ranges" aria-pressed="true">Uncertain inputs</button>
         <button type="button" class="chip-b m plain" id="reload">New workload</button>
       </div>
       <div class="lab-main">
-        <div class="cam"><canvas id="cam-cv" role="img" aria-label="The camera frame: backside temperature, 48 by 48 pixels, with block outlines."></canvas><p class="m cam-l" id="cam-l">Camera frame, 48 × 48 pixels</p></div>
-        <div class="svgbox bars" id="g-bars" role="img" aria-label="Recovered power of each block with its 95% interval, beside the true value."></div>
+        <div class="fieldbox"><canvas id="lim-cv" role="img" aria-label="The transistor layer as solved, with block outlines; the first cell to reach the limit is ringed."></canvas><p class="m fieldbox-l" id="lim-l">Transistor layer, 48 × 48 cells</p></div>
+        <div class="svgbox bars" id="g-lim" role="img" aria-label="Peak temperature of each block with its 95% interval, the limit, and the watts each block can still add."></div>
         <aside class="receipt m" id="receipt" aria-live="polite"><p>Solving.</p></aside>
       </div>
-      <figcaption id="lab-cap" class="m">The camera frame is the forward model plus noise. The inverse fits 13 block powers by least squares; intervals are 1.96 standard errors. When the fit residual is close to the camera noise, the model explains the image. When it is not, the receipt says so.</figcaption>
+      <figcaption id="lab-cap" class="m">The limit is held at every cell of the transistor layer. Headroom scales every block's power together until the hottest cell reaches the limit; a block's watts are what that block alone can add. Intervals are the 2.5th and 97.5th percentiles of 200 solves, each drawing the cooling (±20%), the interconnect and bump conductivities (±30%), silicon's conductivity (±10%) and every block's power (±10%) from its range. The run is a SHA-256 digest of every input.</figcaption>
     </figure>
   </div>
 </section>
@@ -244,10 +244,11 @@
   </div>
   <div class="wrap grid">
     <ol class="numbered">
-      <li><span class="m">01.</span><p class="m"><b>Forward solve: <span data-live="ms">11 ms</span></b> on this device, one CPU thread, JavaScript. Every layer, every cell, steady state.</p></li>
-      <li><span class="m">02.</span><p class="m"><b>Transient: <span data-live="tr">0.1 s</span></b> for 108 implicit time steps from 1 ms to 4 s, the heating shown in the hero.</p></li>
-      <li><span class="m">03.</span><p class="m"><b>Inverse: <span data-live="inv">6 ms</span></b> once the 13 block responses exist. Each response is one forward solve.</p></li>
-      <li><span class="m">04.</span><p class="m"><b>Checked, not assumed.</b> An independent finite-volume residual of the full 3-D system: <span data-live="res">1 × 10⁻¹³</span>.</p></li>
+      <li><span class="m">01.</span><p class="m"><b>Forward solve: <span data-live="ms">11 ms</span></b> on this device, one CPU thread, JavaScript. Every layer, every one of <span data-live="cells">32,256</span> cells, steady state.</p></li>
+      <li><span class="m">02.</span><p class="m"><b>Transient: <span data-live="tr">0.1 s</span></b> for 108 implicit time steps from 1 ms to 4 s, the heating shown in the story.</p></li>
+      <li><span class="m">03.</span><p class="m"><b>A new workload: <span data-live="ask">0.1 ms</span></b> once the 13 block responses exist, against <span data-live="ms">11 ms</span> for a fresh solve. Each response is one forward solve; after that a workload, a limit or a sweep is a sum of 13 fields.</p></li>
+      <li><span class="m">04.</span><p class="m"><b>Intervals: <span data-live="mc">0.4 s</span></b> for 200 solves of the transistor layer, each with its own draw of the uncertain inputs. One such solve takes <span data-live="jms">2 ms</span>.</p></li>
+      <li><span class="m">05.</span><p class="m"><b>Checked, not assumed.</b> An independent finite-volume residual of the full 3-D system: <span data-live="res">1 × 10⁻¹³</span>.</p></li>
     </ol>
   </div>
 </section>
@@ -256,17 +257,18 @@
   <div class="wrap grid">
     <h2 class="side" id="t-research">Perimeter</h2>
     <div class="col">
-      <p class="para">The blocks above are regions, not pixels, and that is the idea of our study. Perimeter replaces the square patches of a vision transformer with the regions of an oriented cell complex. Every border carries a sign. One signed pass returns each region's exact area, centre and spread, so the model sees parts, not pixels.</p>
+      <p class="para">The solver and our study share one piece of mathematics: a cell complex whose borders carry signs. Perimeter builds one for each picture and gives a vision transformer its regions instead of square patches. The solver builds one for each design. In both, one signed pass over the borders makes the sums exact, and the cost follows the parts, not the pixels.</p>
       <a class="pill line" href="#contact" data-topic="Request: the Perimeter study">Request the full study</a>
     </div>
   </div>
   <div class="wrap two">
-    <figure class="graph card-g">
-      <img src="assets/perimeter-tokens.jpg" alt="The same photograph three ways: 64 square patch tokens, 36 region tokens, and the cell complex of 36 regions and 98 signed borders." width="1584" height="605" loading="lazy">
-      <figcaption class="m">64 patch tokens, 36 region tokens, and the cell complex behind them: 36 regions, 98 borders. From the study.</figcaption>
-    </figure>
-    <figure class="graph card-g chart">
-      <svg viewBox="0 0 640 420" role="img" aria-labelledby="ch-t ch-d">
+    <div class="stackcol">
+      <figure class="graph card-g">
+        <img src="assets/perimeter-tokens.jpg" alt="The same photograph three ways: 64 square patch tokens, 36 region tokens, and the cell complex of 36 regions and 98 signed borders." width="1584" height="605" loading="lazy">
+        <figcaption class="m">In the study: 64 patch tokens, 36 region tokens, and the cell complex behind them, 36 regions and 98 borders.</figcaption>
+      </figure>
+      <figure class="graph card-g chart">
+        <svg viewBox="0 0 640 420" role="img" aria-labelledby="ch-t ch-d">
         <title id="ch-t">Tokens per image as resolution rises</title>
         <desc id="ch-d">Square patches of 16 pixels grow from 16 tokens at 64 pixels to 4,096 at 1,024 pixels. Region tokens stay between 13.0 and 14.4 at every size measured.</desc>
         <g class="grid-l">
@@ -285,15 +287,32 @@
         <text class="lab-p" x="600" y="136" text-anchor="end">square patches: 16 to 4,096</text>
         <text class="lab-r" x="600" y="326" text-anchor="end">regions: 13.0 to 14.4 at every size</text>
       </svg>
-      <figcaption class="m">Patch counts are exact for 16-pixel patches. The region band is the range measured in the study, mean of five images.</figcaption>
+        <figcaption class="m">Tokens against picture size. Patch counts are exact for 16-pixel patches; the region band is the range measured in the study, mean of five images.</figcaption>
+      </figure>
+    </div>
+    <figure class="graph card-g">
+      <div class="svgbox" id="g-complex" role="img" aria-label="The chip floorplan as a cell complex, regions coloured by power density, each border oriented."></div>
+      <figcaption class="m">In the solver: this chip's floorplan as the same kind of complex, <span data-live="cx-regions">14</span> regions with the frame and <span data-live="cx-borders">13</span> borders, each oriented from the lower label to the higher. One signed pass gives every block's area, centroid and second moments; largest difference from counting cells, <span data-live="cx-err">3 × 10⁻¹⁵</span>. The space between the blocks gets its area, <span data-live="cx-un">28.4 mm²</span>, by subtracting the borders it shares with them; drop the signs and the same pass gives <span data-live="cx-un-bad">171.6 mm²</span>.</figcaption>
     </figure>
   </div>
   <div class="wrap grid">
+    <div class="col maptable">
+      <table class="layers map m">
+        <caption class="sr">The same mathematics in the study and in the solver</caption>
+        <thead><tr><th scope="col"></th><th scope="col">In the study</th><th scope="col">In the solver</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Signed borders</th><td data-label="In the study">One pass recovers each region's exact area, centroid and second moments; without signs, two different regions can get the same inputs (Proposition 1).</td><td data-label="In the solver">Each face's heat leaves one cell with a plus and enters the next with a minus, so inside the die every border cancels: heat in equals heat out to <span data-live="balance">3 × 10⁻¹⁴</span>.</td></tr>
+          <tr><th scope="row">Parts, not pixels</th><td data-label="In the study">Region counts stay at 13.0 to 14.4 from 64 to 1,024 px, while patches grow with the square of the side (Proposition 2).</td><td data-label="In the solver">One solve per block, then any workload or limit is a sum of 13 fields. Area turns power into density: the GPU draws the most, <span data-live="gpu-w">14 W</span> over <span data-live="gpu-a">15.8 mm²</span>, but <span data-live="bind">C1</span> runs hottest at <span data-live="dens-hot">1.38</span> W/mm², <span data-live="dens-x">1.6</span> times the GPU's density.</td></tr>
+          <tr><th scope="row">Region tokens</th><td data-label="In the study">+1.8 points top-1 over plain patches on all three seeds, with 69% of the multiply-adds (Imagewoof, 128 px, CPU pilot).</td><td data-label="In the solver">Next, not yet built: a learned model that reads a design as parts, with every answer checked by the exact solver's residual before it is used.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="wrap grid">
     <ol class="numbered">
-      <li><span class="m">01.</span><p class="m"><b>+1.8 points</b> top-1 over plain patches on all three seeds, with 69% of the multiply-adds. Imagewoof at 128 px, CPU pilot.</p></li>
-      <li><span class="m">02.</span><p class="m"><b>Flat with resolution.</b> 13.0 to 14.4 regions per image from 64 to 1,024 px, where patches grow with the square of the side.</p></li>
-      <li><span class="m">03.</span><p class="m"><b>Proved.</b> The signed pass recovers exact area, centroid and second moments. Without signs, two different regions can give the same inputs.</p></li>
-      <li><span class="m">04.</span><p class="m"><b>Not yet shown.</b> A gain from the signs themselves: 0.25 points, inside seed noise. On a CPU the pilot ran at 349 images/s against 704. GPU throughput is measured on our H100 runs, not claimed here.</p></li>
+      <li><span class="m">01.</span><p class="m"><b>Proved.</b> The signed pass recovers exact area, centroid and second moments, for any orientation of the borders. Without signs, two different regions can give the same inputs.</p></li>
+      <li><span class="m">02.</span><p class="m"><b>Found.</b> Region tokens beat patch tokens by 1.8 points on every seed with 69% of the multiply-adds, and every region variant beat every patch variant, token merging included.</p></li>
+      <li><span class="m">03.</span><p class="m"><b>Not yet shown.</b> A gain from the signs themselves: 0.25 points, inside seed noise. On a CPU the pilot ran at 349 images/s against 704. GPU throughput is measured on our H100 runs, not claimed here.</p></li>
     </ol>
   </div>
 </section>
@@ -302,7 +321,7 @@
   <div class="wrap grid">
     <h2 class="side" id="t-film">The film</h2>
     <div class="col">
-      <p class="para">The worked example as a short film: the stack, the heat, the three bands and the inverse, drawn from the same solver as the page.</p>
+      <p class="para">The worked example as a short film: the stack, the heat, the three bands and the limit, drawn from the same solver as the page.</p>
     </div>
   </div>
   <div class="wrap">
@@ -325,7 +344,7 @@
   <div class="wrap grid">
     <div class="arrow" aria-hidden="true"><svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 24h34M28 11l13 13-13 13" fill="none" stroke="currentColor" stroke-width="4.5"/></svg></div>
     <div class="col">
-      <h2 id="t-contact">Bring a surface<br>you can measure.</h2>
+      <h2 id="t-contact">Bring the design<br>you need to trust.</h2>
       <p class="para small">Ask about the study, the solver, or a problem of your own. Messages go to <a href="mailto:hi@42theory.com">hi@42theory.com</a>.</p>
       <form class="form" id="form" action="https://formsubmit.co/hi@42theory.com" method="POST" novalidate>
         <input type="hidden" name="_subject" value="42theory.com: new message" id="f-subject">
@@ -349,10 +368,9 @@
   <div class="wrap grid">
     <h2 class="side" id="t-sources">Sources</h2>
     <ol class="col m refs">
-      <li>H. F. Hamann et al., <a href="https://research.ibm.com/publications/hotspot-limited-microprocessors-direct-temperature-and-power-distribution-measurements">Hotspot-limited microprocessors: direct temperature and power distribution measurements</a>, IEEE Journal of Solid-State Circuits 42(1), 2007.</li>
       <li>M. A. Green and M. J. Keevers, Optical properties of intrinsic silicon at 300 K, Progress in Photovoltaics 3, 189–192, 1995. <a href="https://www.pveducation.org/id/node/1004">Table via PVEducation</a>.</li>
+      <li>J. Komma et al., <a href="https://doi.org/10.1063/1.4738989">Thermo-optic coefficient of silicon at 1550 nm and cryogenic temperatures</a>, Applied Physics Letters 101, 041905, 2012.</li>
       <li>NVIDIA, <a href="https://docs.nvidia.com/cuda/cusolverdx/0.4.0/get_started/functions/gtsv.html">cuSolverDx gtsv</a>: batched tridiagonal solves on the GPU.</li>
-      <li>A. M. R. Sharma et al., Enhanced infrared imaging for die-level fault isolation using lock-in thermography, Journal of Failure Analysis and Prevention 24(5), 2024.</li>
       <li>F. Alsehami, Perimeter: the complete study, 42theory, 2026. Available on request.</li>
     </ol>
   </div>
@@ -364,7 +382,7 @@
   <div class="wrap grid">
     <a class="logo" href="#top" aria-label="42theory, back to top"><img src="assets/42theory-lockup.svg" alt="42theory" width="207" height="52"></a>
     <nav class="cols m" aria-label="Footer">
-      <div><h3>Use case</h3><a href="#chip">The stack</a><a href="#light">Light</a><a href="#inverse">Inverse</a><a href="#compute">Compute</a></div>
+      <div><h3>Use case</h3><a href="#chip">The stack</a><a href="#light">Light</a><a href="#limits">Limits</a><a href="#compute">Compute</a></div>
       <div><h3>Research</h3><a href="#research">Perimeter</a><a href="#film">Film</a><a href="#contact" data-topic="Request: the Perimeter study">Request the study</a></div>
       <div><h3>Contact</h3><a href="mailto:hi@42theory.com">hi@42theory.com</a><a href="#contact">Write to us</a></div>
     </nav>
@@ -372,7 +390,7 @@
   </div>
 </footer>
 
-<script src="assets/42theory.js?v=2511660f" defer></script>
-<script type="module" src="assets/42theory-story.js?v=17ba1016"></script>
+<script src="assets/42theory.js?v=f41d9801" defer></script>
+<script type="module" src="assets/42theory-story.js?v=1e8fab8e"></script>
 </body>
 </html>
