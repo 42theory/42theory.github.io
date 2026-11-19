@@ -1,0 +1,4 @@
+Contact: mailto:hi@42theory.com
+Expires: 2027-10-15T00:00:00Z
+Preferred-Languages: en
+Canonical: https://42theory.com/.well-known/security.txt
