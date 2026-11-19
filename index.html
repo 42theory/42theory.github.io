@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; media-src 'self'; connect-src 'self' https://formsubmit.co; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-pgU0I2ZizzbCTBM+YXnLBCspcFydSgx4ZFfLgGijmYk='; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; base-uri 'self'; object-src 'none'; frame-src 'none'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>42theory: read the neural code, then write it</title>
-<meta name="description" content="42theory is the intelligence layer for neuroscience: models that read what a population of neurons encodes, with an interval on every reading, and compute the stimulation that writes a chosen state back. From the body to the brain to the code, running live in this page.">
+<meta name="description" content="42theory builds models that read what a population of neurons encodes, with a tested interval on each reading, and compute how to write a chosen state back.">
 <link rel="canonical" href="https://42theory.com/">
 <meta property="og:title" content="42theory: read the neural code, then write it">
 <meta property="og:description" content="Read a population of neurons with a tested 95% interval, write a chosen state back through a few stimulation sites, and hold it in a closed loop. Simulated, and running in the page.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="42theory">
+<meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://42theory.com/">
 <meta property="og:image" content="https://42theory.com/assets/42theory-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="42theory. Read the neural code. Then write it. A human brain drawn as a cloud of points.">
@@ -20,18 +22,19 @@
 <meta name="twitter:title" content="42theory: read the neural code, then write it">
 <meta name="twitter:description" content="The intelligence layer for neuroscience. Read a population of neurons with a tested 95% interval, write a chosen state back, hold it in a closed loop. Simulated, and running in the page.">
 <meta name="twitter:image" content="https://42theory.com/assets/42theory-card.jpg">
+<meta name="twitter:image:alt" content="42theory. Read the neural code. Then write it. A human brain drawn as a cloud of points.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#0F1B24">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Geist+Mono:wght@300..500&amp;display=swap">
-<link rel="stylesheet" href="assets/42theory.2e9463b3.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"42theory","url":"https://42theory.com/","logo":"https://42theory.com/assets/42theory-logo.png","image":"https://42theory.com/assets/42theory-card.jpg","email":"hi@42theory.com","description":"42theory is the intelligence layer for neuroscience: software that reads what a population of neurons encodes, with an interval on every reading, and computes the stimulation that writes a chosen state back.","knowsAbout":["Computational neuroscience","Neural population coding","Closed-loop neuromodulation","Machine learning"]}</script>
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/42theory.bba7fb66.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://42theory.com/#org","name":"42theory","url":"https://42theory.com/","logo":{"@type":"ImageObject","url":"https://42theory.com/assets/42theory-logo.png","width":800,"height":800},"image":"https://42theory.com/assets/42theory-card.jpg","email":"hi@42theory.com","description":"42theory is the intelligence layer for neuroscience: software that reads what a population of neurons encodes, with an interval on every reading, and computes the stimulation that writes a chosen state back.","knowsAbout":["Computational neuroscience","Neural population coding","Closed-loop neuromodulation","Machine learning"],"contactPoint":{"@type":"ContactPoint","contactType":"general enquiries","email":"hi@42theory.com","availableLanguage":"English"}},{"@type":"WebSite","@id":"https://42theory.com/#site","url":"https://42theory.com/","name":"42theory","inLanguage":"en","publisher":{"@id":"https://42theory.com/#org"}}]}</script>
 </head>
-<body>
+<body data-checks="assets/42theory-checks.245632be.js">
 <a class="skip" href="#main">Skip to content</a>
 
 <aside class="notice" id="notice" aria-label="Notice">
@@ -63,6 +66,7 @@
 <noscript><p class="nojs">The pictures, the lab and the film on this page are drawn by JavaScript, which is switched off in this browser. All of the text is here without it.</p></noscript>
 
 <section class="story" id="story" aria-labelledby="t-hero">
+  <div class="motion"><button type="button" class="motion-b" id="motion" hidden><svg class="i-pause" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M3 1.5v9M9 1.5v9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M3 1.4v9.2L10.4 6z" fill="currentColor"/></svg><span id="motion-t">Pause motion</span></button></div>
   <div class="pin" aria-hidden="true">
     <canvas id="story-cv"></canvas>
   </div>
@@ -81,7 +85,7 @@
     <div class="step">
       <div class="wrap"><div class="say">
         <h2>The brain does not sit above the body. It runs it.</h2>
-        <p>Moment by moment, through the vagus nerve and the sympathetic chain, it sets the pace of the heart, opens the sweat glands and wakes the adrenal glands. Other nerves shape each breath, tune the voice, move the face and size the pupils.</p>
+        <p>Moment by moment, through the vagus nerve and the sympathetic chain, it sets the pace of the heart, opens the sweat glands and wakes the adrenal glands. Cranial and spinal nerves shape each breath, tune the voice, move the face and size the pupils.</p>
       </div></div>
     </div>
     <div class="step">
@@ -308,21 +312,23 @@
   <div class="wrap grid2">
     <div>
       <h2 id="t-contact">Bring a recording, or a question.</h2>
-      <p class="lead dark">A dataset to try the reader on, a write problem, or the Perimeter study. Messages go to <a href="mailto:hi@42theory.com">hi@42theory.com</a>.</p>
+      <p class="lead dark">A dataset to try the reader on, a write problem, or the Perimeter study. Use the form, or write to <a href="mailto:hi@42theory.com">hi@42theory.com</a>.</p>
     </div>
-    <form class="form" id="form" action="https://formsubmit.co/hi@42theory.com" method="POST" novalidate>
+    <form class="form" id="form" action="https://formsubmit.co/hi@42theory.com" method="POST" accept-charset="UTF-8">
       <input type="hidden" name="_subject" value="42theory.com: new message" id="f-subject">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://42theory.com/#sent">
       <p class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
+      <p class="sent" id="sent">Sent. We will reply from hi@42theory.com.</p>
       <div class="row2">
-        <p><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></p>
-        <p><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></p>
+        <p><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="e-name"><span class="err" id="e-name"></span></p>
+        <p><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" maxlength="254" required aria-describedby="e-email"><span class="err" id="e-email"></span></p>
       </div>
-      <p><label for="f-org">Organization <span>(optional)</span></label><input id="f-org" name="organization" type="text" autocomplete="organization"></p>
-      <p><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="5" required></textarea></p>
-      <div class="send"><button type="submit" class="pill dark" id="f-send">Send message</button><p class="status" id="f-status" role="status" aria-live="polite"></p></div>
+      <p><label for="f-org">Organization <span>(optional)</span></label><input id="f-org" name="organization" type="text" autocomplete="organization" maxlength="160"></p>
+      <p><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="5" maxlength="5000" required aria-describedby="e-msg"></textarea><span class="err" id="e-msg"></span></p>
+      <div class="send"><button type="submit" class="pill dark" id="f-send">Send message</button><p class="status" id="f-status" role="status"></p></div>
+      <p class="note">Your message reaches our inbox through FormSubmit, a form delivery service. We use it to answer you and for nothing else. <a href="privacy.html">Privacy</a></p>
     </form>
   </div>
 </section>
@@ -333,18 +339,18 @@
   <div class="wrap footgrid">
     <a class="logo" href="#top" aria-label="42theory, back to top"><img src="assets/42theory-lockup.svg" alt="42theory" width="160" height="44"></a>
     <nav class="cols" aria-label="Footer">
-      <div><h3>Lab</h3><a href="#lab">Read</a><a href="#lab">Write</a><a href="#lab">Hold</a></div>
-      <div><h3>Company</h3><a href="#approach">Approach</a><a href="#uses">Use cases</a><a href="#research">Perimeter</a><a href="#film">Film</a></div>
+      <div><h3>Lab</h3><a href="#lab" data-tab="read">Read</a><a href="#lab" data-tab="write">Write</a><a href="#lab" data-tab="hold">Hold</a></div>
+      <div><h3>Company</h3><a href="#approach">Approach</a><a href="#uses">Use cases</a><a href="#research">Perimeter</a><a href="#film">Film</a><a href="privacy.html">Privacy</a></div>
       <div><h3>Contact</h3><a href="mailto:hi@42theory.com">hi@42theory.com</a><a href="#contact">Write to us</a></div>
     </nav>
     <div class="copy">
       <p>© 2026 42theory. Software only: models and solvers. The lab and the film are simulations. Not a medical device.</p>
-      <p>Anatomy: <a href="https://doi.org/10.1093/nar/gkn613">BodyParts3D</a>, © The Database Center for Life Science, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Changed here: structures merged and shown as surface points. The nerve pathways are schematic and not part of the dataset.</p>
+      <p>Anatomy: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/desc.html">BodyParts3D</a>, © The Database Center for Life Science licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC Attribution 4.0 International</a>. Changed here: structures merged and shown as surface points. The nerve pathways are schematic and not part of the dataset.</p>
     </div>
   </div>
 </footer>
 
-<script src="assets/42theory.ff9795d3.js" defer></script>
+<script src="assets/42theory.ab9e51a8.js" defer></script>
 <script src="assets/anatomy.cee47054.js" defer></script>
 </body>
 </html>
