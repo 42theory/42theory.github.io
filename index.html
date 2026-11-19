@@ -2,352 +2,256 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; media-src 'self'; connect-src 'self' https://formsubmit.co; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; media-src 'self'; connect-src 'self' https://formsubmit.co; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>42theory: exact physics, without the GPU farm</title>
-<meta name="description" content="42theory builds solvers and simulators that answer in milliseconds on one CPU core, check themselves and put an interval on every number. Two problems first: heat in 3-D stacked AI chips, and the X-ray dose a CT scan needs to find lung and colon cancer. Both run live in this page.">
+<title>42theory: read the neural code, then write it</title>
+<meta name="description" content="42theory is the intelligence layer for neuroscience: models that read what a population of neurons encodes, with an interval on every reading, and compute the stimulation that writes a chosen state back. From the body to the brain to the code, running live in this page.">
 <link rel="canonical" href="https://42theory.com/">
-<meta property="og:title" content="42theory: exact physics, without the GPU farm">
-<meta property="og:description" content="Heat in a 3-D stacked AI chip and the dose a CT scan needs to find a 6 mm nodule, solved exactly in the page, with intervals and a run record.">
+<meta property="og:title" content="42theory: read the neural code, then write it">
+<meta property="og:description" content="Read a population of neurons with a tested 95% interval, write a chosen state back through a few stimulation sites, and hold it in a closed loop. Simulated, and running in the page.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="42theory">
 <meta property="og:url" content="https://42theory.com/">
-<meta name="theme-color" content="#FAFAF8">
+<meta property="og:image" content="https://42theory.com/assets/42theory-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="42theory. Read the neural code. Then write it. A human brain drawn as a cloud of points.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="42theory: read the neural code, then write it">
+<meta name="twitter:description" content="The intelligence layer for neuroscience. Read a population of neurons with a tested 95% interval, write a chosen state back, hold it in a closed loop. Simulated, and running in the page.">
+<meta name="twitter:image" content="https://42theory.com/assets/42theory-card.jpg">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#0F1B24">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Geist+Mono:wght@300..500&amp;display=swap">
-<link rel="stylesheet" href="assets/42theory.css?v=7710e8b7">
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" integrity="sha384-IDC7sAMAIMB/TZ6dgKKPPAKZ2bXXXP8+FBMBC8cU319eBhKITx+PaalhfDkDNH28" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/42theory.2e9c2808.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"42theory","url":"https://42theory.com/","logo":"https://42theory.com/assets/42theory-logo.png","image":"https://42theory.com/assets/42theory-card.jpg","email":"hi@42theory.com","description":"42theory is the intelligence layer for neuroscience: software that reads what a population of neurons encodes, with an interval on every reading, and computes the stimulation that writes a chosen state back.","knowsAbout":["Computational neuroscience","Neural population coding","Closed-loop neuromodulation","Machine learning"]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="notice" id="notice">
-  <p class="m">Two solvers run in this page: heat in a 3-D stacked AI chip, and the dose a CT scan needs to find a 6 mm nodule. <a href="#lab">Run the chip</a> · <a href="#health">Run the scan</a></p>
-  <button type="button" class="notice-x" id="notice-x" aria-label="Dismiss this notice"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor"/><path d="M7 7l6 6M13 7l-6 6" stroke="currentColor" stroke-linecap="round"/></svg></button>
-</div>
+<aside class="notice" id="notice" aria-label="Notice">
+  <p>A simulated population of neurons runs in this page. Read it, write to it, hold its state. <a href="#lab">Open the lab</a></p>
+  <button type="button" class="notice-x" id="notice-x" aria-label="Dismiss this notice"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+</aside>
 
 <header class="top" id="top">
   <div class="wrap bar">
-    <a class="logo" href="#top" aria-label="42theory, back to top"><img src="assets/42theory-lockup.svg" alt="42theory" width="276" height="69"></a>
-    <nav aria-label="Main">
-      <ul class="m">
-        <li><a href="#chips">Chips</a></li>
-        <li><a href="#health">Healthcare</a></li>
-        <li><a href="#compete">Where we compete</a></li>
-        <li><a href="#compute">Compute</a></li>
-        <li><a href="#research">Research</a></li>
+    <a class="logo" href="#top" aria-label="42theory, back to top"><img src="assets/42theory-lockup.svg" alt="42theory" width="134" height="37"></a>
+    <nav class="nav-wide" aria-label="Main">
+      <ul>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#lab">Lab</a></li>
+        <li><a href="#uses">Use cases</a></li>
+        <li><a href="#research">Perimeter</a></li>
         <li><a href="#film">Film</a></li>
       </ul>
     </nav>
-    <div class="acts">
-      <a class="pill line" href="#contact" data-topic="Request: the Perimeter study">Read the study</a>
-      <a class="pill red" href="#contact">Contact</a>
-    </div>
+    <a class="pill white small cta-top" href="#contact">Write to us</a>
+    <details class="menu" id="menu">
+      <summary>Menu</summary>
+      <nav aria-label="Main, small screens"><a href="#approach">Approach</a><a href="#lab">Lab</a><a href="#uses">Use cases</a><a href="#research">Perimeter</a><a href="#film">Film</a><a href="#contact">Write to us</a></nav>
+    </details>
   </div>
 </header>
 
 <main id="main">
+<noscript><p class="nojs">The pictures, the lab and the film on this page are drawn by JavaScript, which is switched off in this browser. All of the text is here without it.</p></noscript>
 
 <section class="story" id="story" aria-labelledby="t-hero">
-  <div class="story-sticky">
-    <canvas id="story-gl" aria-hidden="true"></canvas>
-    <canvas id="story-ov" aria-hidden="true"></canvas>
-    <div class="story-labels" id="story-labels" aria-hidden="true"></div>
-    <div class="story-tags" id="story-tags" aria-hidden="true"></div>
-    <div class="story-hero" id="story-hero">
-      <h1 id="t-hero">Exact physics.<br>Without the GPU farm.</h1>
-      <p class="lead">42theory builds solvers and simulators that answer in milliseconds on one CPU core, check their own work and put an interval on every number. Two problems first: heat in 3-D stacked AI chips, and the X-ray dose a CT scan needs to find lung and colon cancer.</p>
-      <div class="cta">
-        <a class="pill red" href="#lab">Run the chip solver</a>
-        <a class="pill line" href="#health">Run the CT simulator</a>
-      </div>
-      <p class="meta m">Worked example: a 370 W GPU with six 8-high memory stacks, from a 2026 UCLA design study</p>
-    </div>
-    <ol class="story-steps m" id="story-steps" aria-label="Story steps">
-      <li><button type="button">Module</button></li><li><button type="button">Beside</button></li><li><button type="button">Stacked</button></li><li><button type="button">Layers</button></li><li><button type="button">Heat</button></li><li><button type="button">Limit</button></li><li><button type="button">Answer</button></li>
-    </ol>
-    <div class="story-text" id="story-text" aria-live="polite"><h2 id="story-title"></h2><p class="m" id="story-sub"></p><a class="pill red" id="story-cta" href="#lab" hidden>Run the solver yourself</a></div>
-    <div class="story-bar m" id="story-bar" aria-hidden="true"><span id="bar-lo">75 °C</span><i></i><span id="bar-hi">105 °C</span></div>
-    <div class="story-scale m" id="story-scale" aria-hidden="true"><i></i><span>10 mm</span></div>
-    <p class="story-hint m" aria-hidden="true">Scroll to take the package apart</p>
+  <div class="pin" aria-hidden="true">
+    <canvas id="story-cv"></canvas>
   </div>
-</section>
-<noscript><style>.story{height:auto}.story-sticky{position:relative;height:auto;overflow:visible;background:none}.story canvas,.story-steps,.story-text,.story-bar,.story-scale,.story-hint,.story-note{display:none}.story-hero{position:relative;left:auto;top:auto;padding:120px var(--pad) 40px;max-width:none}</style></noscript>
-<div class="wrap story-note"><p class="m">Rendered live in your browser from the solver on this page. Side to side the parts are to scale; layer thicknesses are stretched so each one reads, and wiring patterns are drawn, not traced from a real layout. Dimensions, powers, cooling and layers follow Ray et al. (UCLA, 2026) and imec's published layer data; the GPU floorplan inside the published 32.4 × 25.5 mm die is ours. The model fills the gaps between the stacked memory with silicon, so every layer spans the GPU.</p></div>
-<div class="wrap" id="story-fallback" hidden>
-    <figure class="stage" aria-labelledby="hero-cap">
-      <canvas id="hero-cv" role="img" aria-label="The memory-on-GPU stack pulled apart layer by layer, with the solved temperature of the GPU transistors and of each DRAM die.">The memory-on-GPU stack and its heat.</canvas>
-      <button type="button" class="stage-btn m" id="hero-pause" aria-pressed="false">Pause</button>
-      <figcaption class="m" id="hero-cap">Computed in your browser: the 3-D heat of a 370 W GPU under eight DRAM dies, on 56 × 44 × 35 cells. Layers to scale side to side, thicknesses stretched.</figcaption>
-    </figure>
-</div>
-
-<section class="statement" aria-label="What 42theory does">
-  <canvas class="field" id="field-cv" aria-hidden="true"></canvas>
-  <div class="wrap grid">
-    <p class="col big" id="statement">A 3-D chip is a stack of layers, and its heat has to cross every one. A CT scan is a stack of projections, and a 6 mm nodule has to survive every one of them. 42theory solves both from first principles, then works backward from what must hold: a temperature limit, a detection threshold.</p>
-  </div>
-</section>
-
-<section class="steps" aria-labelledby="t-steps">
-  <div class="wrap grid">
-    <h2 class="side" id="t-steps">From design<br>to answer</h2>
-    <p class="col para">The same three steps in every problem we take on: model the physics from the design, solve it exactly, and answer the question that was asked, with the uncertainty attached. No measurement goes in, and no training data.</p>
-  </div>
-  <div class="wrap">
-    <ol class="three">
-      <li>
-        <div class="card"><div class="mini svgbox" id="mini-stack" role="img" aria-label="Temperature through the stack at the GPU's hottest point, layer by layer."></div><span class="chip-l m">The design, layer by layer</span></div>
-        <span class="num">01</span>
-        <h3>Model</h3>
-        <p class="m">Layers, materials, floorplan, power and cooling for a chip; anatomy, scanner and dose for a scan. Inputs that are not known exactly carry a range.</p>
-      </li>
-      <li>
-        <div class="card"><canvas class="mini" id="mini-heat" role="img" aria-label="The GPU's transistor layer as solved, with its block outlines and the hottest cell ringed."></canvas><span class="chip-l m">GPU transistors, solved</span></div>
-        <span class="num">02</span>
-        <h3>Solve</h3>
-        <p class="m">Exact for the discretized design: heat made equals heat removed to <span data-live="balance">1 × 10⁻¹²</span>, and an independent residual checks every one of <span data-live="cells">86,240</span> cells.</p>
-      </li>
-      <li>
-        <div class="card"><div class="mini svgbox" id="mini-bars" role="img" aria-label="Allowed GPU power for five stack-ups, with the 95% interval for the stacked design."></div><span class="chip-l m">Allowed power, with an interval</span></div>
-        <span class="num">03</span>
-        <h3>Ask</h3>
-        <p class="m">Backward from a requirement. Hold the GPU to 95 °C and the DRAM to 95 °C: this stack can draw <span data-live="head">82%</span> of its power, between <span data-live="headlo">69%</span> and <span data-live="headhi">93%</span> once the uncertain inputs vary.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<section class="stats" aria-label="Computed in this page">
-  <div class="wrap">
-    <ul class="tiles">
-      <li><b class="m" data-live="tile-ms">42 ms</b><span class="m">full 3-D heat solve, <span data-live="cells">86,240</span> cells, one CPU thread on this device</span></li>
-      <li><b class="m" data-live="tile-cg">25×</b><span class="m">faster than conjugate gradients on the same system, same answer to <span data-live="cg-diff">2 × 10⁻¹¹</span></span></li>
-      <li><b class="m" data-live="tile-head">82%</b><span class="m">of the GPU's power the limits allow when the memory is stacked on it; 99.5% side by side</span></li>
-      <li><b class="m" data-live="tile-ct">3 s</b><span class="m">for a virtual trial: 200 patients scanned, reconstructed and read at 41 doses</span></li>
-    </ul>
-    <p class="note m">Computed when this page loaded, on your device. The values above are placeholders until then.</p>
-  </div>
-</section>
-
-<section class="topic" id="chips" aria-labelledby="t-chips">
-  <div class="wrap grid">
-    <h2 class="side" id="t-chips">Chips: the stack, layer by layer</h2>
-    <div class="col">
-      <p class="para">Putting memory on top of the GPU shortens every path between them, and puts eight DRAM dies between the GPU and its cooling. These are the layers of that stack as the solver sees them, bottom to top, each with its thickness, its conductivity and where the number comes from.</p>
-    </div>
-  </div>
-  <div class="wrap grid split">
-    <div class="tablewrap">
-      <table class="layers m" id="layer-table">
-        <caption class="sr">Layers of the memory-on-GPU stack, top to bottom</caption>
-        <thead><tr><th scope="col">Layer</th><th scope="col">Thickness</th><th scope="col">k in plane</th><th scope="col">k through</th><th scope="col">Source</th></tr></thead>
-        <tbody id="layer-rows">
-          <tr><th scope="row">Copper heat spreader</th><td>3 mm</td><td>390</td><td>390</td><td>UCLA</td></tr>
-          <tr><th scope="row">Thermal interface</th><td>100 µm</td><td>5</td><td>5</td><td>UCLA</td></tr>
-          <tr><th scope="row">8 DRAM dies, 8 bonds</th><td>30 + 5 µm each</td><td>140, 3.5</td><td>140, 3.5</td><td>UCLA, imec</td></tr>
-          <tr><th scope="row">Memory base die</th><td>60 µm</td><td>140</td><td>140</td><td>UCLA</td></tr>
-          <tr><th scope="row">GPU silicon, thinned</th><td>375 µm</td><td>140</td><td>140</td><td>UCLA</td></tr>
-        </tbody>
-      </table>
-      <p class="fine m" id="layer-fine">k in W/m·K. Cooled at 7,000 W/m²·K to 45 °C over the 1,500 mm² package; the board below at 200 W/m²·K. GPU 370 W in 13 blocks and the space between them; memory 9 W in the base die and 21 W across the DRAM dies.</p>
-    </div>
-    <figure class="graph">
-      <div class="svgbox" id="g-profile" role="img" aria-label="Temperature through the stack at the GPU's hottest point and on average, from the board to the spreader."></div>
-      <figcaption class="m">Temperature through the stack at the GPU's hottest point (red) and averaged over the die (dark), from the board up to the spreader. Each band is a layer.</figcaption>
-    </figure>
-  </div>
-  <div class="wrap two">
-    <figure class="graph card-g">
-      <div class="svgbox" id="g-compare" role="img" aria-label="The GPU power the limits allow for five stack-ups: memory beside the GPU, memory on the GPU with microbumps or hybrid bonds, and the GPU on the memory with either bond."></div>
-      <figcaption class="m">Five stack-ups at the same 400 W, each held to 95 °C on the GPU and on every DRAM die. Bars: the share of the GPU's power the limits allow. Beside the GPU the memory is outside the solved column, so only the GPU's limit applies there.</figcaption>
-    </figure>
-    <figure class="graph card-g">
-      <div class="svgbox" id="g-heating" role="img" aria-label="Heating from cold: the GPU's hottest point and the bottom and top DRAM dies against time, on a log scale."></div>
-      <figcaption class="m">Heating from cold at full power: the GPU's hottest point and the DRAM dies nearest and farthest from it, 40 implicit steps from 1 ms to 30 s.</figcaption>
-    </figure>
-  </div>
-  <div class="wrap grid">
-    <ol class="facts m" id="chip-facts">
-      <li><span>GPU hottest point, full power</span><b data-live="hot">GPC2, 104.9 °C</b></li>
-      <li><span>DRAM, bottom to top</span><b data-live="drams">101.9 to 96.1 °C</b></li>
-      <li><span>Heat leaving through the top</span><b data-live="up">95.0%</b></li>
-      <li><span>Time to 95% of steady</span><b data-live="t95">3.5 s</b></li>
-    </ol>
-  </div>
-</section>
-
-<section class="topic" id="lab" aria-labelledby="t-lab">
-  <div class="wrap grid">
-    <h2 class="side" id="t-lab">Solve backward<br>from a limit</h2>
-    <div class="col">
-      <p class="para">Heat is linear in power. So the solver runs once for each of the 14 parts of the GPU's floorplan and once for the memory, and from those 15 responses it answers backward with no new solve: how much of its power the GPU can draw before any transistor or any DRAM die reaches its limit. Change the stack, the bonds, the interface or the cooling; each answer carries a 95% interval from 200 more solves.</p>
-    </div>
-  </div>
-  <div class="wrap">
-    <figure class="lab" id="chip-lab" aria-labelledby="lab-cap">
-      <div class="lab-bar">
-        <div class="seg m" role="group" aria-label="Stack-up">
-          <button type="button" data-stack="25d" aria-pressed="false">Beside</button>
-          <button type="button" data-stack="m3d" aria-pressed="true">Memory on GPU</button>
-          <button type="button" data-stack="g3d" aria-pressed="false">GPU on memory</button>
-        </div>
-        <div class="seg m" role="group" aria-label="Bonds between dies">
-          <button type="button" data-bond="bump" aria-pressed="true">Microbumps</button>
-          <button type="button" data-bond="hybrid" aria-pressed="false">Hybrid bonds</button>
+  <div class="steps">
+    <div class="step first">
+      <div class="wrap">
+        <div class="hero-in">
+          <h1 id="t-hero">Read the neural code. <span class="blue">Then write it.</span></h1>
+          <p class="lead">42theory is the intelligence layer for neuroscience: models that read what a population of neurons encodes, with an interval on every reading, and compute the stimulation that writes a chosen state back.</p>
+          <p class="cta"><a class="pill white" href="#lab">Open the lab</a><a class="pill line" href="#film">Watch the film</a></p>
+          <p class="cue" aria-hidden="true">Scroll</p>
         </div>
       </div>
-      <div class="lab-bar sliders">
-        <label class="slider m">Interface <input type="range" id="c-tim" min="0" max="5" step="1" value="2"> <output id="c-tim-v">5 W/m·K</output></label>
-        <label class="slider m">Cooling <input type="range" id="c-h" min="3000" max="15000" step="500" value="7000"> <output id="c-h-v">7,000 W/m²·K</output></label>
-        <label class="slider m">Coolant <input type="range" id="c-tc" min="25" max="55" step="1" value="45"> <output id="c-tc-v">45 °C</output></label>
-        <label class="slider m">GPU limit <input type="range" id="c-lim" min="85" max="110" step="1" value="95"> <output id="c-lim-v">95 °C</output></label>
-        <label class="slider m">DRAM limit <input type="range" id="c-limd" min="85" max="105" step="1" value="95"> <output id="c-limd-v">95 °C</output></label>
-      </div>
-      <div class="lab-main">
-        <div class="fieldbox"><canvas id="lab-gpu" class="rect" role="img" aria-label="The GPU's transistor layer as solved, with block outlines; the first cell to reach its limit is ringed."></canvas><p class="m fieldbox-l" id="lab-gpu-l">GPU transistors, 56 × 44 cells</p>
-          <canvas id="lab-dram" class="rect" role="img" aria-label="The DRAM die nearest the GPU, as solved."></canvas><p class="m fieldbox-l" id="lab-dram-l">DRAM die nearest the GPU</p></div>
-        <div class="svgbox bars" id="g-lab" role="img" aria-label="Peak temperature of each GPU block at full power with its 95% interval, and the limit."></div>
-        <aside class="receipt m" id="lab-receipt" aria-live="polite"><p>Solving.</p></aside>
-      </div>
-      <figcaption id="lab-cap" class="m">The limits are held at every cell of the GPU's transistor layer and of every DRAM die. The GPU's power scales together until the first cell reaches its limit; the memory's 30 W stays fixed. Intervals are the 2.5th and 97.5th percentiles of 200 solves, each drawing the cooling (±20%), the interface (±30%), the bonds (±40%), the GPU wiring (±30%), silicon (±10%), every block's power (±10%) and the memory's power (±20%). The run is a SHA-256 digest of every input.</figcaption>
-    </figure>
+      <p class="credit">Anatomy: BodyParts3D, © The Database Center for Life Science, CC BY 4.0, shown as surface points. Pathways are schematic.</p>
+    </div>
+    <div class="step">
+      <div class="wrap"><div class="say">
+        <h2>The brain does not sit above the body. It runs it.</h2>
+        <p>Moment by moment, through the vagus nerve and the sympathetic chain, it sets the pace of the heart, opens the sweat glands and wakes the adrenal glands. Other nerves shape each breath, tune the voice, move the face and size the pupils.</p>
+      </div></div>
+    </div>
+    <div class="step">
+      <div class="wrap"><div class="say">
+        <h2>And the body answers.</h2>
+        <p>With every heartbeat, signals rise through the vagus nerve to the brainstem and on to the insula and the cingulate cortex. This loop is part of how the brain keeps a running model of the body, and of how we feel.<sup><a href="#ref-10">10</a></sup></p>
+      </div></div>
+    </div>
+    <div class="step">
+      <div class="wrap"><div class="say">
+        <h2>Six channels of this loop can be measured from outside.</h2>
+        <p>Heart rhythm, skin conductance, breathing, voice, facial movement and the eyes. Cameras, microphones and wearables already capture them, all day, at almost no cost.</p>
+      </div></div>
+    </div>
+    <div class="step">
+      <div class="wrap"><div class="say">
+        <h2>But the link back to the brain is mostly assumed.</h2>
+        <p>Lower heart-rate variability is read as anxiety.<sup><a href="#ref-11">11</a></sup> A flat voice is read as low reward. The usual ground truth is a questionnaire, and such readings are rarely checked against the brain itself.</p>
+      </div></div>
+    </div>
+    <div class="step">
+      <div class="wrap"><div class="say">
+        <h2>So we work on the link itself: the code.</h2>
+        <p>A state is carried by the joint activity of many neurons. 42theory builds the models that read that activity and say how sure each reading is, compute how to write a chosen state back, and hold it in a closed loop. The ring is 42 simulated neurons, read live.</p>
+        <p class="cta"><a class="pill white" href="#lab">Open the lab</a></p>
+      </div></div>
+    </div>
   </div>
 </section>
 
-<section class="topic" id="health" aria-labelledby="t-health">
-  <div class="wrap grid">
-    <h2 class="side" id="t-health">Healthcare: finding cancer at the lowest dose</h2>
-    <div class="col">
-      <p class="para">Low-dose CT finds lung cancer early, and CT colonography finds polyps without a scope, but every scan is X-ray dose. The simulator builds virtual patients from tissue attenuation data, scans them with the statistics of the photons, reconstructs the slice and measures how detectable a nodule or polyp is at every dose. Across 200 virtual patients it answers what a screening protocol has to settle: how much dose detection needs, and for whom.</p>
-    </div>
-  </div>
+<section class="approach sheet" id="approach" aria-labelledby="t-approach">
   <div class="wrap">
-    <figure class="lab" id="ct-lab" aria-labelledby="ct-cap">
-      <div class="lab-bar">
-        <div class="seg m" role="group" aria-label="Screening task">
-          <button type="button" data-scn="solid" aria-pressed="false">Lung: solid nodule</button>
-          <button type="button" data-scn="ggn" aria-pressed="true">Lung: ground-glass nodule</button>
-          <button type="button" data-scn="polyp" aria-pressed="false">Colon: polyp</button>
-        </div>
-        <button type="button" class="chip-b m plain" id="ct-next">Another patient</button>
+    <div class="head2 dark">
+      <h2 id="t-approach">The intelligence layer</h2>
+      <p class="lead dark">Software only. Three things it has to do well before any of it deserves trust, each one computed in this page on a simulated population.</p>
+    </div>
+    <div class="three">
+      <article>
+        <svg class="gl" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><g fill="currentColor"><circle cx="32.0" cy="15.0" r="1.8"/><circle cx="40.5" cy="17.3" r="2.9"/><circle cx="46.7" cy="23.5" r="2.9"/><circle cx="49.0" cy="32.0" r="1.8"/><circle cx="46.7" cy="40.5" r="1.8"/><circle cx="40.5" cy="46.7" r="1.8"/><circle cx="32.0" cy="49.0" r="1.8"/><circle cx="23.5" cy="46.7" r="1.8"/><circle cx="17.3" cy="40.5" r="1.8"/><circle cx="15.0" cy="32.0" r="1.8"/><circle cx="17.3" cy="23.5" r="1.8"/><circle cx="23.5" cy="17.3" r="1.8"/></g><path d="M39.2 5.1A28 28 0 0 1 56.3 18" fill="none" stroke="var(--bluel)" stroke-width="3.4" stroke-linecap="round"/></svg>
+        <h3>Read</h3>
+        <p>From one window of spikes to what the population encodes. The answer is a whole posterior, so each reading carries a 95% interval, and the interval is tested: over <b data-o="c-n">2,000</b> simulated windows it held the truth <b data-o="c-cov">95.2%</b> of the time. The error was <b data-o="c-err">2.20°</b>; the theoretical limit for any decoder is <b data-o="c-bound">2.20°</b>.</p>
+      </article>
+      <article>
+        <svg class="gl" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><circle cx="32" cy="32" r="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-dasharray="4 4.2"/><g stroke-linecap="round" stroke-width="4.4" fill="none"><path d="M32 12V4" stroke="rgba(16,28,36,.22)"/><path d="M49.3 22L56.2 18" stroke="var(--bluel)"/><path d="M49.3 42L56.2 46" stroke="var(--bluel)"/><path d="M32 52V60" stroke="rgba(16,28,36,.22)"/><path d="M14.7 42L7.8 46" stroke="rgba(16,28,36,.22)"/><path d="M14.7 22L7.8 18" stroke="rgba(16,28,36,.22)"/></g></svg>
+        <h3>Write</h3>
+        <p>Given a state the population should carry, compute the stimulation that produces it through a device with a few sites and limited reach. The problem is convex, so the solver reaches its optimum. Then the result is read back: within <b data-o="c-rb">±5.6°</b> of the wanted angle in 95% of windows, where a real stimulus reads within <b data-o="c-nat">±4.5°</b>.</p>
+      </article>
+      <article>
+        <svg class="gl" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><g fill="currentColor"><circle cx="30.3" cy="26.2" r="1.9"/><circle cx="37.0" cy="28.6" r="1.9"/><circle cx="36.7" cy="35.7" r="1.9"/><circle cx="30.0" cy="37.6" r="1.9"/><circle cx="26.0" cy="31.8" r="1.9"/><circle cx="45.9" cy="30.1" r="1.6"/><circle cx="45.0" cy="37.3" r="1.6"/><circle cx="40.6" cy="43.1" r="1.6"/><circle cx="33.9" cy="45.9" r="1.6"/><circle cx="26.7" cy="45.0" r="1.6"/><circle cx="20.9" cy="40.6" r="1.6"/><circle cx="18.1" cy="33.9" r="1.6"/><circle cx="19.0" cy="26.7" r="1.6"/><circle cx="23.4" cy="20.9" r="1.6"/><circle cx="30.1" cy="18.1" r="1.6"/><circle cx="37.3" cy="19.0" r="1.6"/><circle cx="43.1" cy="23.4" r="1.6"/><circle cx="31.8" cy="54.0" r="1.3"/><circle cx="25.6" cy="53.1" r="1.3"/><circle cx="19.9" cy="50.4" r="1.3"/><circle cx="15.2" cy="46.3" r="1.3"/><circle cx="11.9" cy="41.0" r="1.3"/><circle cx="10.2" cy="34.9" r="1.3"/><circle cx="10.3" cy="28.7" r="1.3"/><circle cx="12.1" cy="22.7" r="1.3"/><circle cx="15.5" cy="17.4" r="1.3"/><circle cx="20.3" cy="13.4" r="1.3"/><circle cx="26.0" cy="10.8" r="1.3"/><circle cx="32.2" cy="10.0" r="1.3"/><circle cx="38.4" cy="10.9" r="1.3"/><circle cx="44.1" cy="13.6" r="1.3"/><circle cx="48.8" cy="17.7" r="1.3"/><circle cx="52.1" cy="23.0" r="1.3"/><circle cx="53.8" cy="29.1" r="1.3"/><circle cx="53.7" cy="35.3" r="1.3"/><circle cx="51.9" cy="41.3" r="1.3"/><circle cx="48.5" cy="46.6" r="1.3"/><circle cx="43.7" cy="50.6" r="1.3"/><circle cx="38.0" cy="53.2" r="1.3"/><circle cx="4.2" cy="42.0" r="1.0"/><circle cx="2.9" cy="36.7" r="1.0"/><circle cx="2.5" cy="31.3" r="1.0"/><circle cx="3.1" cy="25.9" r="1.0"/><circle cx="4.8" cy="20.7" r="1.0"/><circle cx="7.3" cy="15.9" r="1.0"/><circle cx="10.7" cy="11.6" r="1.0"/><circle cx="14.8" cy="8.0" r="1.0"/><circle cx="19.5" cy="5.3" r="1.0"/><circle cx="24.6" cy="3.4" r="1.0"/><circle cx="30.0" cy="2.6" r="1.0"/><circle cx="35.4" cy="2.7" r="1.0"/><circle cx="40.8" cy="3.8" r="1.0"/><circle cx="45.8" cy="5.9" r="1.0"/><circle cx="50.3" cy="8.9" r="1.0"/><circle cx="54.3" cy="12.7" r="1.0"/><circle cx="57.5" cy="17.1" r="1.0"/><circle cx="59.8" cy="22.0" r="1.0"/><circle cx="61.1" cy="27.3" r="1.0"/><circle cx="61.5" cy="32.7" r="1.0"/><circle cx="60.9" cy="38.1" r="1.0"/><circle cx="59.2" cy="43.3" r="1.0"/><circle cx="56.7" cy="48.1" r="1.0"/><circle cx="53.3" cy="52.4" r="1.0"/><circle cx="49.2" cy="56.0" r="1.0"/><circle cx="44.5" cy="58.7" r="1.0"/><circle cx="39.4" cy="60.6" r="1.0"/><circle cx="34.0" cy="61.4" r="1.0"/><circle cx="28.6" cy="61.3" r="1.0"/><circle cx="23.2" cy="60.2" r="1.0"/><circle cx="18.2" cy="58.1" r="1.0"/><circle cx="13.7" cy="55.1" r="1.0"/><circle cx="9.7" cy="51.3" r="1.0"/><circle cx="6.5" cy="46.9" r="1.0"/></g></svg>
+        <h3>At the scale of the recording</h3>
+        <p>Recordings are growing from hundreds of neurons toward a million. The reader makes one pass over a window's spikes, then works on a fixed number of sums however large the population is: <b data-o="c-scale-n">1,000,000</b> simulated neurons are read in <b data-o="c-scale">about 10 ms</b>, on one CPU core, in this page.</p>
+      </article>
+    </div>
+    <aside class="real" aria-labelledby="t-real">
+      <h3 id="t-real">What is real here</h3>
+      <div>
+        <p>Everything running in this page is a simulation: a population we built, with tuning, noise and a stimulation model we chose. It shows the method and how the method checks itself. It is not a recording, and it says nothing yet about any brain.</p>
+        <p>Recorded data is the next step. If you record populations and want this tried on your data, <a href="#contact" data-topic="A recording to try">write to us</a>.</p>
       </div>
-      <div class="lab-bar sliders">
-        <label class="slider m">Dose <input type="range" id="ct-dose" min="0" max="60" step="1" value="40" aria-describedby="ct-dose-v"> <output id="ct-dose-v">1.00 mGy</output></label>
-        <label class="slider m">Lesion <input type="range" id="ct-size" min="4" max="10" step="1" value="6"> <output id="ct-size-v">6 mm</output></label>
-        <label class="chk m"><input type="checkbox" id="ct-ring" checked> Ring the lesion</label>
-      </div>
-      <div class="lab-main ct">
-        <div class="fieldbox"><canvas id="ct-img" role="img" aria-label="The reconstructed CT slice of the virtual patient at the chosen dose."></canvas><p class="m fieldbox-l" id="ct-img-l">Reconstructed slice, 1.25 mm</p></div>
-        <div class="svgbox bars" id="g-ct" role="img" aria-label="Detectability against dose for this patient, with the band across 200 virtual patients, the detection threshold and published dose markers."></div>
-        <aside class="receipt m" id="ct-receipt" aria-live="polite"><p>Building the virtual patients.</p></aside>
-      </div>
-      <figcaption id="ct-cap" class="m">Each patient's slice is built from ellipses of tissue with NIST attenuation at 60 keV; the scan is the exact line integrals with photon noise for the dose (CTDIvol, 32 cm phantom); the solver reconstructs it by filtered back-projection. Detectability d′ is a channelized Hotelling reader, the standard model reader in CT image-quality research, with the vessels or folds around the lesion drawn again and again as anatomy. Below d′ = 5 (Rose) no reader finds the lesion reliably. The reader is ideal: it knows where to look and reads one slice, with an ideal photon-counting detector.</figcaption>
-    </figure>
-  </div>
-  <div class="wrap grid">
-    <ol class="numbered">
-      <li><span class="m">01.</span><p class="m"><b>Photons are not what limits a solid nodule.</b> Its contrast against air-filled lung is so high that an ideal reader finds it far below today's doses. Radiologists reading a chest phantom with iterative reconstruction found 95% of solid nodules at 0.03 mGy and all of them at 0.28 mGy; the screening limit is 3 mGy.</p></li>
-      <li><span class="m">02.</span><p class="m"><b>Ground-glass nodules are limited by the anatomy.</b> Their contrast against the lung is a few hundred HU, a third of the vessels around them, so the vessels, not the photons, set the limit: past a point more dose does not help, and d′ levels off at <span data-live="ggn-inf">5.3 to 7.6</span> across patients, just above the threshold. That is where 3-D reading, better reconstruction and AI readers have to earn their place.</p></li>
-      <li><span class="m">03.</span><p class="m"><b>The gap is the opportunity.</b> Between the physics floor and the dose used today lies the room that better reconstruction and readers can take. A virtual trial measures it per patient size and lesion before any patient is scanned, the way the FDA's VICTRE trial replicated a clinical trial with 2,986 virtual patients.</p></li>
-    </ol>
+    </aside>
   </div>
 </section>
 
-<section class="topic" id="compete" aria-labelledby="t-compete">
-  <div class="wrap grid">
-    <h2 class="side" id="t-compete">Where we compete</h2>
-    <div class="col">
-      <p class="para">Stacking made heat the constraint that decides a chip's design: without mitigation, imec's 3-D memory-on-GPU model peaked at 141.7 °C. Design loops that tie workload, power, packaging and throttling together need the thermal answer at every step, thousands of times, not once at sign-off. That loop is where we compete: the exact answer, on the hardware a team already has, in milliseconds.</p>
+<section class="lab" id="lab" aria-labelledby="t-lab">
+  <div class="wrap">
+    <div class="head2">
+      <h2 id="t-lab">The neural code lab</h2>
+      <p class="lead">A population tuned around a ring, like the cells that carry a direction. Change what it is shown, read it, write to it, hold it. It runs here, on your machine.</p>
     </div>
-  </div>
-  <div class="wrap grid">
-    <div class="col maptable">
-      <table class="layers map four m">
-        <caption class="sr">Three ways to compute heat in a chip</caption>
-        <thead><tr><th scope="col"></th><th scope="col">Meshing solvers</th><th scope="col">Learned surrogates</th><th scope="col">42theory</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">What it computes</th><td data-label="Meshing solvers">Any 3-D geometry, forward</td><td data-label="Learned surrogates">An approximation trained on solver output, forward</td><td data-label="42theory">The exact solution of the discretized design, forward and backward</td></tr>
-          <tr><th scope="row">Hardware</th><td data-label="Meshing solvers">Workstations to clusters</td><td data-label="Learned surrogates">GPUs, to train and to run</td><td data-label="42theory">One CPU core; here, a browser tab</td></tr>
-          <tr><th scope="row">Time per answer</th><td data-label="Meshing solvers">Minutes to hours as the mesh grows</td><td data-label="Learned surrogates">Seconds, once trained</td><td data-label="42theory"><span data-live="ms">42 ms</span> for <span data-live="cells">86,240</span> cells, measured below</td></tr>
-          <tr><th scope="row">Check on each answer</th><td data-label="Meshing solvers">Convergence settings</td><td data-label="Learned surrogates">Agreement on test cases</td><td data-label="42theory">Energy balance and residual, printed with every run</td></tr>
-          <tr><th scope="row">Power the limit allows</th><td data-label="Meshing solvers">Repeated runs</td><td data-label="Learned surrogates">Repeated inference</td><td data-label="42theory">From the block responses, no new solve</td></tr>
-          <tr><th scope="row">Uncertainty</th><td data-label="Meshing solvers">Repeated runs</td><td data-label="Learned surrogates">Rarely reported</td><td data-label="42theory">200 solves, 95% interval, in about <span data-live="mc">2 s</span></td></tr>
-          <tr><th scope="row">Not yet</th><td data-label="Meshing solvers">Fast design loops</td><td data-label="Learned surrogates">A guarantee on a new design</td><td data-label="42theory">Layers that vary side to side, such as mold between chiplets: the same transform becomes a preconditioner, in development</td></tr>
-        </tbody>
-      </table>
+    <div class="lab-grid">
+      <div class="stage">
+        <canvas id="lab-cv" role="img" aria-label="The population as a ring."></canvas>
+        <p class="hint" id="lab-hint">Drag around the ring, or tap it, to turn the angle shown.</p>
+      </div>
+      <div class="panel">
+        <div class="tabs" id="lab-tabs" role="group" aria-label="What the lab does">
+          <button type="button" data-tab="read" aria-pressed="true">Read</button><button type="button" data-tab="write" aria-pressed="false">Write</button><button type="button" data-tab="hold" aria-pressed="false">Hold</button>
+        </div>
+        <fieldset class="ctl">
+          <legend class="sr">The population and the window</legend>
+          <div class="row"><span class="lbl" id="l-n">Neurons</span><div class="seg" id="lab-n" role="group" aria-labelledby="l-n"><button type="button" data-n="42" aria-pressed="false">42</button><button type="button" data-n="420" aria-pressed="true">420</button><button type="button" data-n="4200" aria-pressed="false">4,200</button><button type="button" data-n="42000" aria-pressed="false">42,000</button></div></div>
+          <div class="row"><label for="lab-T">Window</label><input type="range" id="lab-T" min="0" max="5" step="1" value="3"><output id="lab-T-out" for="lab-T">100 ms</output></div>
+          <div class="row"><label for="lab-bg">Background firing</label><input type="range" id="lab-bg" min="0" max="3" step="0.1" value="1"><output id="lab-bg-out" for="lab-bg">1.0×</output></div>
+        </fieldset>
+
+        <div id="lab-read" class="mode">
+          <div class="row"><label for="lab-angle">Angle shown</label><input type="range" id="lab-angle" min="0" max="359" step="1" value="128"><output id="lab-angle-out" for="lab-angle">128°</output></div>
+          <div class="btns"><button type="button" class="pill line small" id="lab-new">New window</button><button type="button" class="pill line small" id="lab-run">Test the interval</button><label class="check"><input type="checkbox" id="lab-auto" checked> Keep drawing windows</label></div>
+          <dl class="out">
+            <div><dt>Read</dt><dd class="big blue" data-o="r-read">computing</dd></div>
+            <div><dt>Shown</dt><dd data-o="r-true"></dd></div>
+            <div><dt>Spikes</dt><dd data-o="r-spk"></dd></div>
+            <div><dt>Time to read</dt><dd data-o="r-time"></dd></div>
+            <div><dt>Interval, tested</dt><dd><span class="ln" data-o="r-cov"></span><span class="ln" data-o="r-err"></span></dd></div>
+          </dl>
+          <p class="fine" data-o="r-shown"></p>
+        </div>
+
+        <div id="lab-write" class="mode" hidden>
+          <div class="row"><label for="w-target">Angle wanted</label><input type="range" id="w-target" min="0" max="359" step="1" value="200"><output id="w-target-out" for="w-target">200°</output></div>
+          <div class="row"><label for="w-seen">Angle being seen</label><input type="range" id="w-seen" min="0" max="359" step="1" value="30"><output id="w-seen-out" for="w-seen">30°</output></div>
+          <div class="btns"><label class="check"><input type="checkbox" id="w-seen-on" checked> The population is seeing something</label></div>
+          <div class="row"><span class="lbl" id="l-k">Stimulation sites</span><div class="seg" id="w-sites" role="group" aria-labelledby="l-k"><button type="button" data-k="4" aria-pressed="false">4</button><button type="button" data-k="8" aria-pressed="true">8</button><button type="button" data-k="16" aria-pressed="false">16</button><button type="button" data-k="32" aria-pressed="false">32</button></div></div>
+          <div class="row"><label for="w-spread">Reach of one site</label><input type="range" id="w-spread" min="8" max="45" step="1" value="25"><output id="w-spread-out" for="w-spread">25°</output></div>
+          <dl class="out">
+            <div><dt>Read back</dt><dd><span class="ln blue" data-o="w-rb">computing</span><span class="ln" data-o="w-nat"></span></dd></div>
+            <div><dt>Pattern</dt><dd data-o="w-match"></dd></div>
+            <div><dt>Solver</dt><dd data-o="w-solve"></dd></div>
+            <div><dt>Stimulation</dt><dd data-o="w-power"></dd></div>
+          </dl>
+        </div>
+
+        <div id="lab-hold" class="mode" hidden>
+          <p class="fine">The encoded state drifts and is pulled toward an unwanted value. Every 50 ms the loop reads it and applies the smallest stimulation that returns it to the goal.</p>
+          <div class="row"><label for="h-pull">Pull toward the unwanted state</label><input type="range" id="h-pull" min="0.2" max="1.6" step="0.1" value="0.9"><output id="h-pull-out" for="h-pull">0.9</output></div>
+          <div class="btns"><button type="button" class="pill line small" id="h-again">Run again with new disturbances</button></div>
+          <dl class="out">
+            <div><dt>With the loop</dt><dd class="blue" data-o="hd-in">computing</dd></div>
+            <div><dt>Without it</dt><dd data-o="hd-out"></dd></div>
+            <div><dt>Reading</dt><dd data-o="hd-err"></dd></div>
+            <div><dt>Stimulation</dt><dd data-o="hd-pw"></dd></div>
+          </dl>
+          <p class="fine" data-o="hd-n"></p>
+        </div>
+
+        <details class="record">
+          <summary>Run record</summary>
+          <pre id="lab-record" tabindex="0"></pre>
+        </details>
+      </div>
     </div>
+    <p class="fine model"><b>The model.</b> Each neuron has a preferred angle, a peak rate near 24 spikes per second, one of three tuning widths and some background firing, and it fires as a Poisson process. Reading uses the exact likelihood of that model with a flat prior: the posterior is evaluated on a grid when it is wide, and by Newton's method with a Gaussian interval when it is sharp. In Write, a stimulation site multiplies the rates of the neurons near it and a normalization pool divides every rate by the total drive; the solver minimizes the Poisson divergence between the wanted pattern and the produced one. In Hold, stimulation pulls the encoded state toward the stimulated site. These are assumptions, stated so they can be challenged and changed.</p>
   </div>
-  <div class="wrap two fit">
-    <article class="graph card-g fitcard">
-      <h3>Chips</h3>
-      <dl class="m">
-        <dt>Who</dt><dd>Architects and thermal leads choosing a 3-D stack-up (memory on logic, chiplets, backside power) at chip makers, hyperscalers and packaging houses.</dd>
-        <dt>The job</dt><dd>Pick the stack-up and the power budget before the floorplan freezes, across thousands of options, and know how sure the answer is.</dd>
-        <dt>What they get</dt><dd>The allowed power and the layer that binds, for every option, in milliseconds, with an interval and a run record; inside their own design loop, on CPUs they already run.</dd>
-        <dt>Shown here</dt><dd>The UCLA study's design: side by side the GPU barely throttles; memory on top costs <span data-live="cost3d">18%</span> of its power; the GPU on top, hybrid bonds or better cooling win most of it back. The same ordering as the study.</dd>
-      </dl>
+</section>
+
+<section class="uses" id="uses" aria-labelledby="t-uses">
+  <div class="wrap">
+    <h2 id="t-uses">Where it leads</h2>
+    <article class="use">
+      <h3>Mental health</h3>
+      <div>
+        <p>Mood, arousal and attention are internal states: slow variables that no instrument measures directly, carried by the activity of many neurons and expressed by the body. Reading such a state continuously, with an interval that can be trusted, is the first half of a closed loop. Computing the smallest correction is the second.</p>
+        <p>Clinical groups have decoded mood variations from intracranial recordings in seven people, and have run closed-loop stimulation in one person with treatment-resistant depression.<sup><a href="#ref-5">5</a>, <a href="#ref-6">6</a></sup> The Hold mode of the lab runs the same kind of loop on the simulated population: in range <b data-o="c-hold-in">81%</b> of the time with the loop, <b data-o="c-hold-out">3%</b> without.</p>
+        <p>Most people will never have an electrode. The reading that reaches them has to run on the body alone. The study we propose records brain activity and the six body channels together, in people who already have depth electrodes for epilepsy care, learns the link, and then tests a readout that uses the body only and reports how certain it is.</p>
+        <p class="small">Proposed, not yet run. Research software. Not a medical device and not a treatment.</p>
+      </div>
     </article>
-    <article class="graph card-g fitcard">
-      <h3>Healthcare</h3>
-      <dl class="m">
-        <dt>Who</dt><dd>Protocol and reconstruction teams at CT makers, developers of AI readers who need labeled cases with known truth, and screening programs setting dose by patient size.</dd>
-        <dt>The job</dt><dd>Set the lowest dose that still finds a 6 mm nodule or polyp, for every patient size, and show it before a clinical study.</dd>
-        <dt>What they get</dt><dd>Virtual cohorts with ground truth, their reconstructions and detectability with intervals, in seconds per cohort and with a run record a reviewer can repeat.</dd>
-        <dt>Shown here</dt><dd>Screening for lung cancer (annual low-dose CT for adults 50 to 80 with a 20 pack-year history) and for colorectal cancer by CT colonography, at doses from 0.01 to 10 mGy.</dd>
-      </dl>
+    <article class="use">
+      <h3>Engineering intelligence</h3>
+      <div>
+        <p>The brain is the one working example of general intelligence, and its codes are design rules that can be tested in machines. A rule that survives the test helps twice: the machine improves, and the theory of the brain has passed a harder trial.</p>
+        <p>Our own study, Perimeter, is one such test. Cells in visual cortex signal which side of a border owns it.<sup><a href="#ref-7">7</a></sup> Perimeter gives a vision transformer regions with signed borders in place of square patches: +1.8 points top-1 on all three seeds, with 69% of the multiply-adds, in a CPU pilot on Imagewoof at 128 px.</p>
+        <p><a class="pill line-dark small" href="#research">See the study</a></p>
+      </div>
     </article>
   </div>
 </section>
 
-<section class="topic" id="compute" aria-labelledby="t-compute">
-  <div class="wrap grid">
-    <h2 class="side" id="t-compute">Why it is fast</h2>
-    <div class="col">
-      <p class="para">Layers that span the die let a cosine transform along each side split the 3-D problem into independent columns: <span data-live="modes">2,464</span> small tridiagonal solves of <span data-live="zcells">35</span> cells, one per lateral mode. The work grows as N log N in the number of cells, every column is independent, and nothing iterates, so the answer is exact to rounding.</p>
-    </div>
-  </div>
+<section class="research" id="research" aria-labelledby="t-research">
   <div class="wrap">
-    <figure class="graph wide">
-      <div class="svgbox" id="g-split" role="img" aria-label="Diagram: the power map is transformed into lateral modes, each mode is solved through the stack independently, and the transform is inverted to give the temperature."></div>
-    </figure>
-  </div>
-  <div class="wrap">
-    <figure class="lab bench" id="bench" aria-labelledby="bench-cap">
-      <div class="lab-bar"><button type="button" class="pill red" id="bench-run">Run the comparison</button><p class="m bench-s" id="bench-s">The same system, two ways, timed on this device.</p></div>
-      <div class="svgbox" id="g-bench" role="img" aria-label="Time to solve the same system by the spectral solver and by conjugate gradients."></div>
-      <figcaption id="bench-cap" class="m">The textbook iterative method for this system is conjugate gradients with a diagonal preconditioner, run here to a relative residual of 10⁻¹⁰ on the same <span data-live="unknowns">86,240</span> unknowns. Energy assumes the CPU draws 15 W while it works; it is an estimate, not a measurement.</figcaption>
-    </figure>
-  </div>
-  <div class="wrap grid">
-    <ol class="numbered">
-      <li><span class="m">01.</span><p class="m"><b>Forward solve: <span data-live="ms">42 ms</span></b> on this device, one CPU thread, JavaScript. Every layer, every one of <span data-live="cells">86,240</span> cells, steady state.</p></li>
-      <li><span class="m">02.</span><p class="m"><b>Transient: <span data-live="tr">0.3 s</span></b> for 120 implicit time steps from 1 ms to 30 s, the heating shown above.</p></li>
-      <li><span class="m">03.</span><p class="m"><b>A new workload: <span data-live="ask">1 ms</span></b> once the 15 responses exist, against <span data-live="ms">42 ms</span> for a fresh solve. After that a workload, a limit or a sweep is a sum of fields.</p></li>
-      <li><span class="m">04.</span><p class="m"><b>Intervals: <span data-live="mc">2 s</span></b> for 200 solves of the watched layers, each with its own draw of the uncertain inputs. A design sweep of 10,000 stack-ups is minutes on a laptop.</p></li>
-      <li><span class="m">05.</span><p class="m"><b>Checked, not assumed.</b> An independent finite-volume residual of the full 3-D system: <span data-live="res">1 × 10⁻¹³</span>.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="topic" id="research" aria-labelledby="t-research">
-  <div class="wrap grid">
-    <h2 class="side" id="t-research">Perimeter</h2>
-    <div class="col">
-      <p class="para">The solver and our study share one piece of mathematics: a cell complex whose borders carry signs. Perimeter builds one for each picture and gives a vision transformer its regions instead of square patches. The solver builds one for each floorplan. In both, one signed pass over the borders makes the sums exact, and the cost follows the parts, not the pixels.</p>
-      <a class="pill line" href="#contact" data-topic="Request: the Perimeter study">Request the full study</a>
+    <div class="head2">
+      <h2 id="t-research">Perimeter</h2>
+      <p class="lead">A vision model that sees regions and the borders between them, with a sign on every border, instead of a grid of square patches.</p>
     </div>
-  </div>
-  <div class="wrap two">
-    <div class="stackcol">
-      <figure class="graph card-g">
+    <div class="two">
+      <figure class="fig">
         <img src="assets/perimeter-tokens.jpg" alt="The same photograph three ways: 64 square patch tokens, 36 region tokens, and the cell complex of 36 regions and 98 signed borders." width="1584" height="605" loading="lazy">
-        <figcaption class="m">In the study: 64 patch tokens, 36 region tokens, and the cell complex behind them, 36 regions and 98 borders.</figcaption>
+        <figcaption>In the study: 64 patch tokens, 36 region tokens, and the cell complex behind them, 36 regions and 98 borders.</figcaption>
       </figure>
-      <figure class="graph card-g chart">
+      <figure class="fig chart">
         <svg viewBox="0 0 640 420" role="img" aria-labelledby="ch-t ch-d">
         <title id="ch-t">Tokens per image as resolution rises</title>
         <desc id="ch-d">Square patches of 16 pixels grow from 16 tokens at 64 pixels to 4,096 at 1,024 pixels. Region tokens stay between 13.0 and 14.4 at every size measured.</desc>
@@ -367,92 +271,78 @@
         <text class="lab-p" x="600" y="136" text-anchor="end">square patches: 16 to 4,096</text>
         <text class="lab-r" x="600" y="326" text-anchor="end">regions: 13.0 to 14.4 at every size</text>
       </svg>
-        <figcaption class="m">Tokens against picture size. Patch counts are exact for 16-pixel patches; the region band is the range measured in the study, mean of five images.</figcaption>
+        <figcaption>Tokens against picture size. Patch counts are exact for 16-pixel patches; the region band is the range measured in the study, mean of five images.</figcaption>
       </figure>
     </div>
-    <figure class="graph card-g">
-      <div class="svgbox" id="g-complex" role="img" aria-label="The GPU floorplan as a cell complex, regions coloured by power density, each border oriented."></div>
-      <figcaption class="m">In the solver: the GPU floorplan as the same kind of complex, <span data-live="cx-regions">15</span> regions with the frame and <span data-live="cx-borders">40</span> borders, each oriented from the lower label to the higher. One signed pass gives every block's area, centroid and second moments; largest difference from counting cells, <span data-live="cx-err">3 × 10⁻¹⁵</span>. The space between the blocks gets its area, <span data-live="cx-un">50 mm²</span>, by subtracting the borders it shares with them; drop the signs and the same pass gives <span data-live="cx-un-bad">1,600 mm²</span>.</figcaption>
-    </figure>
-  </div>
-  <div class="wrap grid">
-    <div class="col maptable">
-      <table class="layers map m">
-        <caption class="sr">The same mathematics in the study and in the solver</caption>
-        <thead><tr><th scope="col"></th><th scope="col">In the study</th><th scope="col">In the solver</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Signed borders</th><td data-label="In the study">One pass recovers each region's exact area, centroid and second moments; without signs, two different regions can get the same inputs (Proposition 1).</td><td data-label="In the solver">Each face's heat leaves one cell with a plus and enters the next with a minus, so inside the stack every border cancels: heat in equals heat out to <span data-live="balance">1 × 10⁻¹²</span>.</td></tr>
-          <tr><th scope="row">Parts, not pixels</th><td data-label="In the study">Region counts stay at 13.0 to 14.4 from 64 to 1,024 px, while patches grow with the square of the side (Proposition 2).</td><td data-label="In the solver">One solve per part of the floorplan, then any workload or limit is a sum of 15 fields. Area turns power into density: <span data-live="dens-top">GPC0</span> draws <span data-live="dens-w">39 W</span> over <span data-live="dens-a">71.7 mm²</span>, <span data-live="dens">0.54</span> W/mm².</td></tr>
-          <tr><th scope="row">Region tokens</th><td data-label="In the study">+1.8 points top-1 over plain patches on all three seeds, with 69% of the multiply-adds (Imagewoof, 128 px, CPU pilot).</td><td data-label="In the solver">Next, not yet built: a learned model that reads a design as parts, with every answer checked by the exact solver's residual before it is used.</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <dl class="findings">
+      <div><dt>Signed borders</dt><dd>One pass over the borders recovers each region's exact area, centroid and second moments. Without signs, two different regions can get the same inputs (Proposition 1).</dd></div>
+      <div><dt>Parts, not pixels</dt><dd>Region counts stay at 13.0 to 14.4 from 64 to 1,024 px, while patches grow with the square of the side (Proposition 2).</dd></div>
+      <div><dt>Region tokens</dt><dd>+1.8 points top-1 over plain patches on all three seeds, with 69% of the multiply-adds (Imagewoof, 128 px, CPU pilot).</dd></div>
+    </dl>
+    <a class="pill dark" href="#contact" data-topic="Request: the Perimeter study">Request the full study</a>
   </div>
 </section>
 
 <section class="film" id="film" aria-labelledby="t-film">
-  <div class="wrap grid">
-    <h2 class="side" id="t-film">The film</h2>
-    <div class="col">
-      <p class="para">Both problems in two minutes: the stack and its heat, the limit and the answer, then the scan, its reconstruction and the dose. Drawn frame by frame from the same solvers as the page.</p>
-    </div>
-  </div>
   <div class="wrap">
+    <div class="head2">
+      <h2 id="t-film">The film</h2>
+      <p class="lead">From the body to the brain to the code in under three minutes, drawn frame by frame from the same engine and anatomy as the page. Its numbers are computed on your machine when it starts.</p>
+    </div>
     <div class="player" id="player">
-      <canvas id="film-cv" width="1920" height="1080" role="img" aria-label="The 42theory film. Read the transcript below for its content."></canvas>
+      <canvas id="film-cv" width="1920" height="1080" role="img" aria-label="The 42theory film. Its content is in the transcript below."></canvas>
       <div class="pctl">
-        <button type="button" class="pill red" id="film-play" aria-pressed="false">Play the film</button>
+        <button type="button" class="pill white" id="film-play" aria-pressed="false">Play the film</button>
         <div class="track" id="film-track" aria-hidden="true"><i id="film-prog"></i></div>
-        <span class="m tc" id="film-time">0:00</span>
+        <span class="tc" id="film-time"></span>
       </div>
     </div>
     <details class="transcript">
-      <summary class="m">Read the transcript</summary>
-      <ol class="m" id="film-transcript"></ol>
+      <summary>Read the transcript</summary>
+      <ol id="film-transcript"></ol>
     </details>
   </div>
 </section>
 
 <section class="contact" id="contact" aria-labelledby="t-contact">
-  <div class="wrap grid">
-    <div class="arrow" aria-hidden="true"><svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 24h34M28 11l13 13-13 13" fill="none" stroke="currentColor" stroke-width="4.5"/></svg></div>
-    <div class="col">
-      <h2 id="t-contact">Bring the design<br>you need to trust.</h2>
-      <p class="para small">A stack-up to choose, a protocol to justify, or the study itself. Messages go to <a href="mailto:hi@42theory.com">hi@42theory.com</a>.</p>
-      <form class="form" id="form" action="https://formsubmit.co/hi@42theory.com" method="POST" novalidate>
-        <input type="hidden" name="_subject" value="42theory.com: new message" id="f-subject">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://42theory.com/#sent">
-        <p class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
-        <div class="row2">
-          <p><label for="f-name" class="m">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></p>
-          <p><label for="f-email" class="m">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></p>
-        </div>
-        <p><label for="f-org" class="m">Organization <span>(optional)</span></label><input id="f-org" name="organization" type="text" autocomplete="organization"></p>
-        <p><label for="f-msg" class="m">Message</label><textarea id="f-msg" name="message" rows="5" required></textarea></p>
-        <div class="send"><button type="submit" class="pill red" id="f-send">Send message</button><p class="status m" id="f-status" role="status" aria-live="polite"></p></div>
-      </form>
+  <div class="wrap grid2">
+    <div>
+      <h2 id="t-contact">Bring a recording, or a question.</h2>
+      <p class="lead dark">A dataset to try the reader on, a write problem, or the Perimeter study. Messages go to <a href="mailto:hi@42theory.com">hi@42theory.com</a>.</p>
     </div>
+    <form class="form" id="form" action="https://formsubmit.co/hi@42theory.com" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="42theory.com: new message" id="f-subject">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://42theory.com/#sent">
+      <p class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
+      <div class="row2">
+        <p><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></p>
+        <p><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></p>
+      </div>
+      <p><label for="f-org">Organization <span>(optional)</span></label><input id="f-org" name="organization" type="text" autocomplete="organization"></p>
+      <p><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="5" required></textarea></p>
+      <div class="send"><button type="submit" class="pill dark" id="f-send">Send message</button><p class="status" id="f-status" role="status" aria-live="polite"></p></div>
+    </form>
   </div>
 </section>
 
 <section class="sources" aria-labelledby="t-sources">
-  <div class="wrap grid">
-    <h2 class="side" id="t-sources">Sources</h2>
-    <ol class="col m refs">
-      <li>D. Ray, G. Karfakis, A. Graening, D. Ratchkov, P. Gupta, <a href="https://nanocad.ee.ucla.edu/wp-content/papercite-data/pdf/c137.pdf">Thermally-aware system-technology co-optimization for AI systems</a>, UCLA, 2026. The design: GPU, memory stacks, powers, package, cooling, layer thicknesses, limits and refresh trip points.</li>
-      <li>imec, Thermal impact of frontside and backside power delivery in 3-D system-in-package, arXiv 2508.02284, 2025, Table I: conductivities of substrate, bumps, underfill and wiring.</li>
-      <li>imec, <a href="https://imec-publications.be/handle/20.500.12860/60081">Breaking the thermal bottleneck in 3-D HBM-on-GPU integration via system-technology co-optimization</a>, IEDM 2025: 141.7 °C peak without mitigation.</li>
-      <li>Lee, Kim, Lee, Rhi, Thermal issues related to hybrid bonding of 3-D-stacked HBM, Electronics 14, 2682, 2025: hybrid bonds conduct up to 3 times better than microbumps.</li>
-      <li>J. H. Hubbell and S. M. Seltzer, <a href="https://physics.nist.gov/PhysRefData/XrayMassCoef/">X-ray mass attenuation coefficients</a>, NIST: tissues and air at 60 keV.</li>
-      <li>AAPM, <a href="https://www.aapm.org/pubs/ctprotocols/documents/lungcancerscreeningct.pdf">Lung cancer screening CT protocols</a>, version 6.0, 2023: CTDIvol under 3.0 mGy for a standard-sized patient.</li>
-      <li>K. Martini et al., <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4984934">Ultralow-dose CT with tin filtration for detection of solid and sub-solid pulmonary nodules: a phantom study</a>, British Journal of Radiology 88, 20150389, 2015.</li>
-      <li>E. G. McFarland et al., <a href="https://profiles.wustl.edu/en/publications/acr-colon-cancer-committee-white-paper-status-of-ct-colonography-/">ACR Colon Cancer Committee white paper: status of CT colonography 2009</a>, Journal of the American College of Radiology 6(11), 756–772, 2009: CTDIvol at most 12.5 mGy per screening examination, 6.25 mGy per position.</li>
-      <li>US Preventive Services Task Force, <a href="https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening">Lung cancer screening</a>, 2021: annual low-dose CT for adults 50 to 80 with a 20 pack-year history.</li>
-      <li>A. Badano et al., <a href="https://doi.org/10.1001/jamanetworkopen.2018.5474">Evaluation of digital breast tomosynthesis as replacement of full-field digital mammography using an in silico imaging trial</a>, JAMA Network Open 1(7), e185474, 2018 (VICTRE).</li>
-      <li>AAPM Report 96, The measurement, reporting and management of radiation dose in CT, 2008: effective dose per dose-length product.</li>
-      <li>F. Alsehami, Perimeter: the complete study, 42theory, 2026. Available on request.</li>
+  <div class="wrap grid2">
+    <h2 id="t-sources">Sources</h2>
+    <ol class="refs">
+      <li id="ref-1">A. P. Georgopoulos, A. B. Schwartz, R. E. Kettner, Neuronal population coding of movement direction, Science, 1986. The population vector, the shortcut the lab compares against.</li>
+      <li id="ref-2">H. S. Seung, H. Sompolinsky, Simple models for reading neuronal population codes, Proceedings of the National Academy of Sciences, 1993. Fisher information as the limit on any reading.</li>
+      <li id="ref-3">W. J. Ma, J. M. Beck, P. E. Latham, A. Pouget, Bayesian inference with probabilistic population codes, Nature Neuroscience, 2006.</li>
+      <li id="ref-4">S. S. Kim, H. Rouault, S. Druckmann, V. Jayaraman, <a href="https://doi.org/10.1126/science.aal4835">Ring attractor dynamics in the Drosophila central brain</a>, Science 356, 849–853, 2017. A real ring of heading cells in the fly, and its activity overwritten with light.</li>
+      <li id="ref-5">O. G. Sani, Y. Yang, M. B. Lee, H. E. Dawes, E. F. Chang, M. M. Shanechi, <a href="https://doi.org/10.1038/nbt.4200">Mood variations decoded from multi-site intracranial human brain activity</a>, Nature Biotechnology 36, 954–961, 2018.</li>
+      <li id="ref-6">K. W. Scangos et al., <a href="https://escholarship.org/uc/item/4815r0ct">Closed-loop neuromodulation in an individual with treatment-resistant depression</a>, Nature Medicine 27, 1696–1700, 2021.</li>
+      <li id="ref-7">H. Zhou, H. S. Friedman, R. von der Heydt, <a href="https://doi.org/10.1523/JNEUROSCI.20-17-06594.2000">Coding of border ownership in monkey visual cortex</a>, Journal of Neuroscience 20, 6594–6611, 2000.</li>
+      <li id="ref-8">M. Carandini, D. J. Heeger, Normalization as a canonical neural computation, Nature Reviews Neuroscience, 2012. The normalization in the lab's stimulation model.</li>
+      <li id="ref-9">F. Alsehami, Perimeter: the complete study, 42theory, 2026. Available on request.</li>
+      <li id="ref-10">H. D. Critchley, N. A. Harrison, <a href="https://doi.org/10.1016/j.neuron.2013.02.008">Visceral influences on brain and behavior</a>, Neuron 77, 624–638, 2013. The pathways between body and brain.</li>
+      <li id="ref-11">J. A. Chalmers, D. S. Quintana, M. J.-A. Abbott, A. H. Kemp, <a href="https://doi.org/10.3389/fpsyt.2014.00080">Anxiety disorders are associated with reduced heart rate variability: a meta-analysis</a>, Frontiers in Psychiatry 5, 80, 2014.</li>
+      <li id="ref-12">Anatomy: BodyParts3D, © The Database Center for Life Science, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC Attribution 4.0 International</a>. N. Mitsuhashi et al., <a href="https://doi.org/10.1093/nar/gkn613">BodyParts3D: 3D structure database for anatomical concepts</a>, Nucleic Acids Research 37, D782–D785, 2009. Changed here: structures merged and shown as surface points. Nerve pathways are drawn schematically and are not part of the dataset.</li>
     </ol>
   </div>
 </section>
@@ -460,18 +350,18 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap grid">
-    <a class="logo" href="#top" aria-label="42theory, back to top"><img src="assets/42theory-lockup.svg" alt="42theory" width="207" height="52"></a>
-    <nav class="cols m" aria-label="Footer">
-      <div><h3>Solvers</h3><a href="#chips">Chips</a><a href="#lab">Chip solver</a><a href="#health">CT simulator</a><a href="#compute">Compute</a></div>
-      <div><h3>Company</h3><a href="#compete">Where we compete</a><a href="#research">Perimeter</a><a href="#film">Film</a><a href="#contact" data-topic="Request: the Perimeter study">Request the study</a></div>
+  <div class="wrap footgrid">
+    <a class="logo" href="#top" aria-label="42theory, back to top"><img src="assets/42theory-lockup.svg" alt="42theory" width="160" height="44"></a>
+    <nav class="cols" aria-label="Footer">
+      <div><h3>Lab</h3><a href="#lab">Read</a><a href="#lab">Write</a><a href="#lab">Hold</a></div>
+      <div><h3>Company</h3><a href="#approach">Approach</a><a href="#uses">Use cases</a><a href="#research">Perimeter</a><a href="#film">Film</a></div>
       <div><h3>Contact</h3><a href="mailto:hi@42theory.com">hi@42theory.com</a><a href="#contact">Write to us</a></div>
     </nav>
-    <p class="copy m">© 2026 42theory. Software only: solvers and simulators. Not a medical device; the CT simulator is for research and design.</p>
+    <p class="copy">© 2026 42theory. Software only: models and solvers. The lab and the film are simulations. Not a medical device. Anatomy: BodyParts3D, © The Database Center for Life Science, CC BY 4.0.</p>
   </div>
 </footer>
 
-<script src="assets/42theory.js?v=373dc6ae" defer></script>
-<script type="module" src="assets/42theory-story.js?v=427395ca"></script>
+<script src="assets/42theory.ff9795d3.js" defer></script>
+<script src="assets/anatomy.cee47054.js" defer></script>
 </body>
 </html>
