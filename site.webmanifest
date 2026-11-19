@@ -1,0 +1,36 @@
+{
+  "name": "42theory",
+  "short_name": "42theory",
+  "description": "The intelligence layer for neuroscience.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#0F1B24",
+  "theme_color": "#0F1B24",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
