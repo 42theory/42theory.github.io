@@ -1,0 +1,60 @@
+# Builds the site's raster brand files and its fonts from their sources, and commits them to main.
+#
+#   brand/render.mjs       draws the share card, the logo, the touch and app icons and favicon.ico with the runner's Chrome
+#   brand/logo-square.svg  the logo on its square ground
+#   fonts                  Geist and Geist Mono 1.9.2 (SIL Open Font License 1.1) from the npm registry, checked against known checksums
+#
+# It runs when this branch is pushed, uses no third-party actions, and writes nothing but the files listed in the last step.
+name: Brand assets
+on:
+  push:
+    branches: [brand-build]
+permissions:
+  contents: write
+concurrency:
+  group: brand-assets
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Sources (this branch) and the published site (main)
+        run: |
+          set -euo pipefail
+          git clone --quiet --depth 1 --branch "${GITHUB_REF_NAME}" "https://github.com/${GITHUB_REPOSITORY}.git" build
+          git clone --quiet --depth 1 --branch main "https://github.com/${GITHUB_REPOSITORY}.git" site
+          node --version && google-chrome --version
+      - name: Fonts
+        run: |
+          set -euo pipefail
+          mkdir fonts && cd fonts
+          npm pack --silent geist@1.9.2 > /dev/null
+          tar -xzf geist-1.9.2.tgz
+          mkdir -p ../site/assets/fonts
+          cp package/dist/fonts/geist-sans/Geist-Variable.woff2 package/dist/fonts/geist-mono/GeistMono-Variable.woff2 ../site/assets/fonts/
+          cp package/LICENSE.txt ../site/assets/fonts/OFL.txt
+          cd ../site/assets/fonts
+          sha256sum --check --strict - <<'SUMS'
+          3626eba547294501c8a4d662c7d9ea3b49734409a4c5a1ccf12fa86429b1687e  Geist-Variable.woff2
+          5d93ee62680bbec1abc5405c2658311f9396f6f9a821ef8551ec463887e600d4  GeistMono-Variable.woff2
+          930853ee1daa68554d9e35c8a9175affb74f699fad9a5da6ee5ebe76379d9137  OFL.txt
+          SUMS
+      - name: Images
+        run: node build/brand/render.mjs site
+      - name: Commit to main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd site
+          git add favicon.ico assets/favicon-32.png assets/apple-touch-icon.png assets/icon-192.png assets/icon-512.png assets/icon-maskable-512.png assets/42theory-card.jpg assets/42theory-logo.png assets/fonts/Geist-Variable.woff2 assets/fonts/GeistMono-Variable.woff2 assets/fonts/OFL.txt
+          if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
+          git diff --cached --stat
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit --quiet \
+            -m "Brand images and fonts, built from their sources" \
+            -m "Share card, logo, touch and app icons and favicon.ico drawn by brand/render.mjs (branch ${GITHUB_REF_NAME}, commit ${GITHUB_SHA}) with the runner's Chrome. Geist and Geist Mono 1.9.2 (SIL Open Font License 1.1) from the npm registry, checked against known checksums." \
+            -m "Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>
+          Claude-Session: https://claude.ai/code/session_011YyaSmNsTJMBeRZjbc9Stz"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $(printf 'x-access-token:%s' "${GH_TOKEN}" | base64 -w0)" push --quiet origin HEAD:main
+          git log -1 --format='%H %s'
