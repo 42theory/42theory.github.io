@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Geist+Mono:wght@300..500&amp;display=swap">
-<link rel="stylesheet" href="assets/42theory.2e9c2808.css">
+<link rel="stylesheet" href="assets/42theory.2e9463b3.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"42theory","url":"https://42theory.com/","logo":"https://42theory.com/assets/42theory-logo.png","image":"https://42theory.com/assets/42theory-card.jpg","email":"hi@42theory.com","description":"42theory is the intelligence layer for neuroscience: software that reads what a population of neurons encodes, with an interval on every reading, and computes the stimulation that writes a chosen state back.","knowsAbout":["Computational neuroscience","Neural population coding","Closed-loop neuromodulation","Machine learning"]}</script>
 </head>
 <body>
@@ -87,7 +87,7 @@
     <div class="step">
       <div class="wrap"><div class="say">
         <h2>And the body answers.</h2>
-        <p>With every heartbeat, signals rise through the vagus nerve to the brainstem and on to the insula and the cingulate cortex. This loop is part of how the brain keeps a running model of the body, and of how we feel.<sup><a href="#ref-10">10</a></sup></p>
+        <p>With every heartbeat, signals rise through the vagus nerve to the brainstem and on to the insula and the cingulate cortex. This loop is part of how the brain keeps a running model of the body, and of how we feel.</p>
       </div></div>
     </div>
     <div class="step">
@@ -99,7 +99,7 @@
     <div class="step">
       <div class="wrap"><div class="say">
         <h2>But the link back to the brain is mostly assumed.</h2>
-        <p>Lower heart-rate variability is read as anxiety.<sup><a href="#ref-11">11</a></sup> A flat voice is read as low reward. The usual ground truth is a questionnaire, and such readings are rarely checked against the brain itself.</p>
+        <p>Lower heart-rate variability is read as anxiety. A flat voice is read as low reward. The usual ground truth is a questionnaire, and such readings are rarely checked against the brain itself.</p>
       </div></div>
     </div>
     <div class="step">
@@ -224,7 +224,7 @@
       <h3>Mental health</h3>
       <div>
         <p>Mood, arousal and attention are internal states: slow variables that no instrument measures directly, carried by the activity of many neurons and expressed by the body. Reading such a state continuously, with an interval that can be trusted, is the first half of a closed loop. Computing the smallest correction is the second.</p>
-        <p>Clinical groups have decoded mood variations from intracranial recordings in seven people, and have run closed-loop stimulation in one person with treatment-resistant depression.<sup><a href="#ref-5">5</a>, <a href="#ref-6">6</a></sup> The Hold mode of the lab runs the same kind of loop on the simulated population: in range <b data-o="c-hold-in">81%</b> of the time with the loop, <b data-o="c-hold-out">3%</b> without.</p>
+        <p>Clinical groups have decoded mood variations from intracranial recordings in seven people, and have run closed-loop stimulation in one person with treatment-resistant depression. The Hold mode of the lab runs the same kind of loop on the simulated population: in range <b data-o="c-hold-in">81%</b> of the time with the loop, <b data-o="c-hold-out">3%</b> without.</p>
         <p>Most people will never have an electrode. The reading that reaches them has to run on the body alone. The study we propose records brain activity and the six body channels together, in people who already have depth electrodes for epilepsy care, learns the link, and then tests a readout that uses the body only and reports how certain it is.</p>
         <p class="small">Proposed, not yet run. Research software. Not a medical device and not a treatment.</p>
       </div>
@@ -233,7 +233,7 @@
       <h3>Engineering intelligence</h3>
       <div>
         <p>The brain is the one working example of general intelligence, and its codes are design rules that can be tested in machines. A rule that survives the test helps twice: the machine improves, and the theory of the brain has passed a harder trial.</p>
-        <p>Our own study, Perimeter, is one such test. Cells in visual cortex signal which side of a border owns it.<sup><a href="#ref-7">7</a></sup> Perimeter gives a vision transformer regions with signed borders in place of square patches: +1.8 points top-1 on all three seeds, with 69% of the multiply-adds, in a CPU pilot on Imagewoof at 128 px.</p>
+        <p>Our own study, Perimeter, is one such test. Cells in visual cortex signal which side of a border owns it. Perimeter gives a vision transformer regions with signed borders in place of square patches: +1.8 points top-1 on all three seeds, with 69% of the multiply-adds, in a CPU pilot on Imagewoof at 128 px.</p>
         <p><a class="pill line-dark small" href="#research">See the study</a></p>
       </div>
     </article>
@@ -327,26 +327,6 @@
   </div>
 </section>
 
-<section class="sources" aria-labelledby="t-sources">
-  <div class="wrap grid2">
-    <h2 id="t-sources">Sources</h2>
-    <ol class="refs">
-      <li id="ref-1">A. P. Georgopoulos, A. B. Schwartz, R. E. Kettner, Neuronal population coding of movement direction, Science, 1986. The population vector, the shortcut the lab compares against.</li>
-      <li id="ref-2">H. S. Seung, H. Sompolinsky, Simple models for reading neuronal population codes, Proceedings of the National Academy of Sciences, 1993. Fisher information as the limit on any reading.</li>
-      <li id="ref-3">W. J. Ma, J. M. Beck, P. E. Latham, A. Pouget, Bayesian inference with probabilistic population codes, Nature Neuroscience, 2006.</li>
-      <li id="ref-4">S. S. Kim, H. Rouault, S. Druckmann, V. Jayaraman, <a href="https://doi.org/10.1126/science.aal4835">Ring attractor dynamics in the Drosophila central brain</a>, Science 356, 849–853, 2017. A real ring of heading cells in the fly, and its activity overwritten with light.</li>
-      <li id="ref-5">O. G. Sani, Y. Yang, M. B. Lee, H. E. Dawes, E. F. Chang, M. M. Shanechi, <a href="https://doi.org/10.1038/nbt.4200">Mood variations decoded from multi-site intracranial human brain activity</a>, Nature Biotechnology 36, 954–961, 2018.</li>
-      <li id="ref-6">K. W. Scangos et al., <a href="https://escholarship.org/uc/item/4815r0ct">Closed-loop neuromodulation in an individual with treatment-resistant depression</a>, Nature Medicine 27, 1696–1700, 2021.</li>
-      <li id="ref-7">H. Zhou, H. S. Friedman, R. von der Heydt, <a href="https://doi.org/10.1523/JNEUROSCI.20-17-06594.2000">Coding of border ownership in monkey visual cortex</a>, Journal of Neuroscience 20, 6594–6611, 2000.</li>
-      <li id="ref-8">M. Carandini, D. J. Heeger, Normalization as a canonical neural computation, Nature Reviews Neuroscience, 2012. The normalization in the lab's stimulation model.</li>
-      <li id="ref-9">F. Alsehami, Perimeter: the complete study, 42theory, 2026. Available on request.</li>
-      <li id="ref-10">H. D. Critchley, N. A. Harrison, <a href="https://doi.org/10.1016/j.neuron.2013.02.008">Visceral influences on brain and behavior</a>, Neuron 77, 624–638, 2013. The pathways between body and brain.</li>
-      <li id="ref-11">J. A. Chalmers, D. S. Quintana, M. J.-A. Abbott, A. H. Kemp, <a href="https://doi.org/10.3389/fpsyt.2014.00080">Anxiety disorders are associated with reduced heart rate variability: a meta-analysis</a>, Frontiers in Psychiatry 5, 80, 2014.</li>
-      <li id="ref-12">Anatomy: BodyParts3D, © The Database Center for Life Science, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC Attribution 4.0 International</a>. N. Mitsuhashi et al., <a href="https://doi.org/10.1093/nar/gkn613">BodyParts3D: 3D structure database for anatomical concepts</a>, Nucleic Acids Research 37, D782–D785, 2009. Changed here: structures merged and shown as surface points. Nerve pathways are drawn schematically and are not part of the dataset.</li>
-    </ol>
-  </div>
-</section>
-
 </main>
 
 <footer class="foot">
@@ -357,7 +337,10 @@
       <div><h3>Company</h3><a href="#approach">Approach</a><a href="#uses">Use cases</a><a href="#research">Perimeter</a><a href="#film">Film</a></div>
       <div><h3>Contact</h3><a href="mailto:hi@42theory.com">hi@42theory.com</a><a href="#contact">Write to us</a></div>
     </nav>
-    <p class="copy">© 2026 42theory. Software only: models and solvers. The lab and the film are simulations. Not a medical device. Anatomy: BodyParts3D, © The Database Center for Life Science, CC BY 4.0.</p>
+    <div class="copy">
+      <p>© 2026 42theory. Software only: models and solvers. The lab and the film are simulations. Not a medical device.</p>
+      <p>Anatomy: <a href="https://doi.org/10.1093/nar/gkn613">BodyParts3D</a>, © The Database Center for Life Science, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Changed here: structures merged and shown as surface points. The nerve pathways are schematic and not part of the dataset.</p>
+    </div>
   </div>
 </footer>
 
