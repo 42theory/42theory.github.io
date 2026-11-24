@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; worker-src 'self'; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; manifest-src 'self'; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perimeter playground: 42theory</title>
+<meta name="description" content="Give Perimeter a picture: it finds the regions and signed borders in your browser and measures them against square patches. Nothing leaves your device.">
+<link rel="canonical" href="https://42theory.com/playground.html">
+<meta property="og:title" content="Perimeter playground: 42theory">
+<meta property="og:description" content="Tokenize your own picture the way Perimeter does: regions and signed borders against square patches, measured in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="42theory">
+<meta property="og:url" content="https://42theory.com/playground.html">
+<meta property="og:image" content="https://42theory.com/assets/42theory-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="42theory. Read the neural code. Then write it. A human brain drawn as a cloud of points.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0F1B24">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/42theory.73813b66.css">
+</head>
+<body data-worker="assets/42theory-playground-worker.1a049c5c.js">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top" id="top">
+  <div class="wrap bar">
+    <a class="logo" href="./" aria-label="42theory, home"><img src="assets/42theory-lockup.svg" alt="42theory" width="134" height="37"></a>
+    <nav class="nav-wide" aria-label="Main">
+      <ul>
+        <li><a href="./#approach">Approach</a></li>
+        <li><a href="./#lab">Lab</a></li>
+        <li><a href="./#uses">Use cases</a></li>
+        <li><a href="./#research">Perimeter</a></li>
+        <li><a href="playground.html" aria-current="page">Playground</a></li>
+        <li><a href="./#film">Film</a></li>
+      </ul>
+    </nav>
+    <a class="pill white small cta-top" href="./#contact">Write to us</a>
+    <details class="menu" id="menu">
+      <summary>Menu</summary>
+      <nav aria-label="Main, small screens"><a href="./#approach">Approach</a><a href="./#lab">Lab</a><a href="./#uses">Use cases</a><a href="./#research">Perimeter</a><a href="playground.html" aria-current="page">Playground</a><a href="./#film">Film</a><a href="./#contact">Write to us</a></nav>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+<noscript><p class="nojs">The playground measures pictures with JavaScript, which is switched off in this browser. The study's results and the method are below.</p></noscript>
+
+<section class="pg" id="playground" aria-labelledby="t-pg">
+  <div class="wrap">
+    <div class="head2">
+      <h1 id="t-pg">Perimeter playground</h1>
+      <p class="lead">Give Perimeter a picture. It finds the regions and the signed borders between them, as in the study, and this page measures them against the square patches of a standard vision transformer. Your picture stays on your device.</p>
+    </div>
+    <div class="pg-grid">
+      <div class="pg-stage">
+        <div class="tabs pg-views" id="pg-views" role="group" aria-label="View">
+          <button type="button" data-view="picture" aria-pressed="false">Picture</button><button type="button" data-view="patches" aria-pressed="false">Patches</button><button type="button" data-view="regions" aria-pressed="true">Regions</button><button type="button" data-view="borders" aria-pressed="false">Borders</button><button type="button" data-view="shapes" aria-pressed="false">Shapes</button>
+        </div>
+        <div class="pg-frame" id="pg-frame">
+          <canvas id="pg-cv" width="640" height="640" tabindex="0" role="img" aria-label="The picture, waiting to be measured." aria-describedby="pg-hint"></canvas>
+          <p class="pg-dropnote" id="pg-dropnote" hidden>Drop the picture to measure it</p>
+        </div>
+        <div class="pg-opts">
+          <label class="check" id="pg-fill-l"><input type="checkbox" id="pg-fill"> Fill each token with its mean colour</label>
+          <div class="seg pg-sign" id="pg-sign" role="group" aria-label="Shapes recovered" hidden><button type="button" data-signed="1" aria-pressed="true">With signs</button><button type="button" data-signed="0" aria-pressed="false">Without signs</button></div>
+        </div>
+        <p class="pg-cap" id="pg-cap" aria-live="polite"></p>
+        <p class="hint" id="pg-hint">Point at a region, or select the picture and press the arrow keys, to see what one signed pass over its borders recovers.</p>
+      </div>
+
+      <div class="pg-panel">
+        <div class="pg-src">
+          <div class="btns">
+            <button type="button" class="pill white" id="pg-pick">Upload a picture</button>
+            <input type="file" id="pg-file" accept="image/*" hidden>
+            <span class="fine">or drop or paste one anywhere on this page</span>
+          </div>
+          <div class="row pg-samples"><span class="lbl" id="pg-sl">Or try one of ours</span><div class="seg" role="group" aria-labelledby="pg-sl"><button type="button" data-sample="landscape" aria-pressed="false">Landscape</button><button type="button" data-sample="shapes" aria-pressed="false">Shapes</button><button type="button" data-sample="neurons" aria-pressed="false">Neurons</button></div></div>
+          <p class="pg-status" id="pg-status" role="status"></p>
+        </div>
+
+        <dl class="out pg-out" id="pg-out">
+          <div><dt>Tokens</dt><dd><span class="pg-big" data-o="tok">–</span><span class="ln" data-o="tok-l"></span></dd></div>
+          <div><dt>Attention</dt><dd><span data-o="att">–</span></dd></div>
+          <div><dt>Colour kept</dt><dd><span data-o="kept">–</span><span class="ln" data-o="kept-l"></span></dd></div>
+          <div><dt>Shape</dt><dd><span data-o="shape">–</span><span class="ln" data-o="shape-l"></span></dd></div>
+          <div><dt>Borders</dt><dd><span data-o="bord">–</span></dd></div>
+          <div><dt>On this device</dt><dd><span data-o="time">–</span></dd></div>
+        </dl>
+
+        <div class="pg-insp" id="pg-insp" aria-live="polite">
+          <h2 class="pg-insp-h" id="pg-insp-h">No region selected</h2>
+          <dl class="out pg-insp-d" id="pg-insp-d"></dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-vs" id="against" aria-labelledby="t-vs">
+  <div class="wrap">
+    <div class="head2">
+      <h2 id="t-vs">Against square patches</h2>
+      <p class="lead dark">The same picture cut four ways at 128 pixels, the size the study trains at. Colour kept is the share of the picture's colour variation that the tokens' mean colours account for: it measures the tokens, not a model's accuracy.</p>
+    </div>
+    <div class="pg-tablewrap" role="region" aria-labelledby="pg-vs-cap">
+      <table class="pg-table" id="pg-vs-t">
+        <caption class="sr" id="pg-vs-cap">Four ways to cut your picture into tokens, measured in this page</caption>
+        <thead><tr><th scope="col">Tokens from</th><th scope="col">Tokens</th><th scope="col">Colour kept</th><th scope="col">Attention pairs per layer</th><th scope="col">Time to find them here</th></tr></thead>
+        <tbody>
+          <tr data-r="patches"><th scope="row">Square patches of 16 pixels, the standard</th><td>–</td><td>–</td><td>–</td><td>none, a fixed grid</td></tr>
+          <tr data-r="grid"><th scope="row">Squares on Perimeter's 6 × 6 seed lattice</th><td>–</td><td>–</td><td>–</td><td>none, a fixed grid</td></tr>
+          <tr data-r="quad"><th scope="row">Adaptive squares, at Perimeter's budget</th><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+          <tr data-r="regions" class="pg-us"><th scope="row">Perimeter's regions</th><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="pg-note">Each count includes the class token. Adaptive squares split the square whose colour varies most, again and again, until there are about as many as there are regions.</p>
+
+    <div class="pg-need">
+      <h3 id="t-need">Tokens needed to keep as much colour as the regions</h3>
+      <ol class="pg-bars" id="pg-bars" aria-labelledby="t-need">
+        <li data-b="regions"><span class="pg-bar-l">Perimeter's regions</span><span class="pg-bar"><i></i></span><span class="pg-bar-v">–</span></li>
+        <li data-b="quad"><span class="pg-bar-l">Adaptive squares</span><span class="pg-bar"><i></i></span><span class="pg-bar-v">–</span></li>
+        <li data-b="patches"><span class="pg-bar-l">Square patches</span><span class="pg-bar"><i></i></span><span class="pg-bar-v">–</span></li>
+      </ol>
+      <p class="pg-note" id="pg-need-n">Square patches are made smaller until they keep as much; adaptive squares are split further, down to single pixels if need be.</p>
+    </div>
+
+    <div class="pg-study">
+      <h3 id="t-study">In the study: accuracy and cost</h3>
+      <p class="pg-note">The playground does not run the trained model. These figures are from the study: Imagewoof, a hard ten-class subset of ImageNet, at 128 pixels, 40 epochs, three seeds per variant, trained on two CPU threads.</p>
+      <div class="pg-tablewrap" role="region" aria-labelledby="pg-study-cap">
+        <table class="pg-table">
+          <caption class="sr" id="pg-study-cap">The seven variants of the study</caption>
+          <thead><tr><th scope="col">Variant</th><th scope="col">Top-1 accuracy</th><th scope="col">Perimeter's lead</th><th scope="col">Tokens</th><th scope="col">Multiply-adds (G)</th><th scope="col">Pictures per second</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Plain patches</th><td>62.8% ± 0.8</td><td>+1.8, all 3 seeds</td><td>64</td><td>0.237</td><td>704</td></tr>
+            <tr><th scope="row">Patches with a pass over the grid</th><td>63.6% ± 0.6</td><td>+1.1</td><td>64</td><td>0.254</td><td>601</td></tr>
+            <tr><th scope="row">Token merging, once</th><td>62.7% ± 0.4</td><td>+2.0, all 3 seeds</td><td>32</td><td>0.145</td><td>802</td></tr>
+            <tr><th scope="row">Token merging, progressive</th><td>63.2% ± 1.5</td><td>+1.5</td><td>56 to 16</td><td>0.157</td><td>787</td></tr>
+            <tr><th scope="row">Regions alone</th><td>64.4% ± 0.8</td><td>+0.2, 2 of 3 seeds</td><td>up to 36</td><td>0.146</td><td>417</td></tr>
+            <tr><th scope="row">Regions with unsigned borders</th><td>64.5% ± 0.5</td><td>+0.2, 2 of 3 seeds</td><td>up to 36</td><td>0.163</td><td>303</td></tr>
+            <tr class="pg-us"><th scope="row">Perimeter</th><td>64.7% ± 0.7</td><td></td><td>up to 36</td><td>0.163</td><td>349</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="pg-honest">
+        <li>Perimeter leads plain patches by 1.8 points on all three seeds (95% interval +0.5 to +3.2) with 69% of their multiply-adds. Every region variant is ahead of every patch variant on average.</li>
+        <li>Most of the gain comes from the regions. The signed borders' own lead, 0.2 points, is smaller than the spread between seeds.</li>
+        <li>The multiply-adds leave out building the regions. On two CPU threads that work dominates, and Perimeter runs at about half the speed of plain patches. Speed on a GPU is measured in the next study.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="pg-signs" id="signs" aria-labelledby="t-signs">
+  <div class="wrap">
+    <div class="head2">
+      <h2 id="t-signs">Shape needs signs</h2>
+      <p class="lead dark">Each border carries six integrals. Added with their signs, they give every region its exact area, centre and spread. Added without signs, they do not. This is Proposition 1 of the study, recomputed here.</p>
+    </div>
+    <div class="two pg-two">
+      <div class="fig pg-fig">
+        <h3>On your picture</h3>
+        <dl class="pg-facts">
+          <div><dt>With signs</dt><dd data-o="s-exact">–</dd></div>
+          <div><dt>Any direction</dt><dd data-o="s-flip">–</dd></div>
+          <div><dt>Without signs</dt><dd data-o="s-uns">–</dd></div>
+        </dl>
+        <h3>On 200 random partitions</h3>
+        <dl class="pg-facts">
+          <div><dt>With signs</dt><dd data-o="t-exact">–</dd></div>
+          <div><dt>Any direction</dt><dd data-o="t-flip">–</dd></div>
+          <div><dt>Without signs</dt><dd data-o="t-uns">–</dd></div>
+        </dl>
+        <p class="pg-note">Regions in several pieces and regions around holes are included: the sums do not care. The Shapes view above draws each region's recovered spread, with and without signs.</p>
+      </div>
+      <figure class="fig pg-cx">
+        <div class="pg-cx-pair" role="img" aria-labelledby="pg-cx-t">
+          <p class="sr" id="pg-cx-t">Two pictures of six by four cells. Region A is the band from one sixth to one half of the width. Region B is the left two thirds. The borders of each carry the same unsigned numbers, 0, one sixth and one half, but their signed sums are one third and two thirds.</p>
+          <svg viewBox="0 0 260 270" aria-hidden="true">
+            <g transform="translate(10,30)">
+              <text class="cx-t" x="0" y="-12">Region A</text>
+              <rect class="cx-bg" x="0" y="0" width="240" height="160"/><rect class="cx-r" x="40" y="0" width="80" height="160"/>
+              <path class="cx-grid" d="M40 0v160M80 0v160M120 0v160M160 0v160M200 0v160M0 40h240M0 80h240M0 120h240"/>
+              <rect class="cx-frame" x="0" y="0" width="240" height="160"/>
+              <path class="cx-b" d="M40 0v160M120 0v160"/>
+              <text class="cx-v" paint-order="stroke" x="80" y="5" text-anchor="middle">0</text><text class="cx-v" paint-order="stroke" x="40" y="85" text-anchor="middle">1/6</text><text class="cx-v" paint-order="stroke" x="120" y="85" text-anchor="middle">1/2</text>
+              <text class="cx-s" x="0" y="186">Unsigned inputs: 0, 1/6, 1/2</text>
+              <text class="cx-s cx-strong" x="0" y="208">With signs: −1/6 + 1/2 = 1/3</text>
+              <text class="cx-s" x="0" y="230">True area: 1/3</text>
+            </g>
+          </svg>
+          <svg viewBox="0 0 260 270" aria-hidden="true">
+            <g transform="translate(10,30)">
+              <text class="cx-t" x="0" y="-12">Region B</text>
+              <rect class="cx-bg" x="0" y="0" width="240" height="160"/><rect class="cx-r" x="0" y="0" width="160" height="160"/>
+              <path class="cx-grid" d="M40 0v160M80 0v160M120 0v160M160 0v160M200 0v160M0 40h240M0 80h240M0 120h240"/>
+              <path class="cx-o" d="M160 40h80"/>
+              <rect class="cx-frame" x="0" y="0" width="240" height="160"/>
+              <path class="cx-b" d="M160 0v38M160 42v118"/>
+              <text class="cx-v" paint-order="stroke" x="80" y="5" text-anchor="middle">0</text><text class="cx-v" paint-order="stroke" x="160" y="25" text-anchor="middle">1/6</text><text class="cx-v" paint-order="stroke" x="160" y="105" text-anchor="middle">1/2</text>
+              <text class="cx-s" x="0" y="186">Unsigned inputs: 0, 1/6, 1/2</text>
+              <text class="cx-s cx-strong" x="0" y="208">With signs: +1/6 + 1/2 = 2/3</text>
+              <text class="cx-s" x="0" y="230">True area: 2/3</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>The study's counterexample. Each region's borders carry the same three numbers without signs, 0 from the frame, 1/6 and 1/2, yet A covers a third of its picture and B two thirds. With signs, the sums are the exact areas.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pg-cost" id="cost" aria-labelledby="t-cost">
+  <div class="wrap">
+    <div class="head2">
+      <h2 id="t-cost">Cost against picture size</h2>
+      <p class="lead">Patch tokens grow with the square of the picture's side. Perimeter's regions do not: its 36 seeds set the budget, not the pixels. This is Proposition 2, measured on your picture from 64 to 1,024 pixels.</p>
+    </div>
+    <div class="pg-cost-grid">
+      <figure class="pg-chartbox">
+        <svg class="pg-chart" id="pg-chart" viewBox="0 0 640 424" role="img" aria-labelledby="pg-chart-t"><title id="pg-chart-t">Tokens against picture size, on logarithmic scales. The table beside it has the same numbers.</title></svg>
+        <figcaption class="pg-legend" id="pg-legend"></figcaption>
+      </figure>
+      <div class="pg-tablewrap" role="region" aria-labelledby="pg-size-cap">
+        <table class="pg-table pg-night" id="pg-size-t">
+          <caption class="sr" id="pg-size-cap">Tokens and time against picture size, measured on your picture</caption>
+          <thead><tr><th scope="col">Side</th><th scope="col">Patches</th><th scope="col">Regions</th><th scope="col">Borders</th><th scope="col">Finding the regions</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p class="pg-note" id="pg-size-n">Finding the regions takes longer as the picture grows, because the cells, the seeds' search and the borders cover every pixel. In the study this is why Perimeter runs at about half the speed of patches on a CPU.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="doc pg-how" id="how" aria-labelledby="t-how">
+  <div class="wrap">
+    <h2 class="pg-h" id="t-how">How this page works</h2>
+    <div class="pg-how-grid">
+      <div>
+        <ol class="pg-steps">
+          <li>The picture is cropped to its centre square and resized to 128 by 128 pixels, as in the study.</li>
+          <li>Its pixels are averaged into a grid of 32 by 32 cells, four pixels on a side, each with a colour in CIE Lab.</li>
+          <li>SLIC groups the cells into regions by colour and position: 36 seeds on a 6 by 6 lattice, four rounds, colour weight 10. The frame of the picture counts as one more cell around them.</li>
+          <li>Every pair of regions that touch shares one border, directed from the lower number to the higher. Each border carries six Green integrals: area, two first moments and three second moments.</li>
+          <li>One signed pass, the incidence matrix times the border integrals, gives every region its area, centre and spread. The page checks them against counting cells one by one.</li>
+        </ol>
+        <p>The study's model also runs a learned stem of three convolutions and six transformer layers on these tokens. The playground does not: it has the tokenizer and the signed pass, and the accuracy figures above are the study's.</p>
+        <p>Nothing you give the playground leaves your device. The picture is read in your browser and measured in a worker on your machine, and this page's security policy does not let it connect to any server.</p>
+      </div>
+      <div>
+        <h3>Keep the results</h3>
+        <p class="pg-dl"><button type="button" class="pill dark" id="pg-json" disabled>Download the results (JSON)</button><button type="button" class="pill line-dark" id="pg-png" disabled>Download this view (PNG)</button></p>
+        <p class="pg-note" id="pg-ver"></p>
+        <h3>Limits</h3>
+        <ul>
+          <li>The study is one dataset at one picture size, trained for 40 epochs on two CPU threads. Small models on small datasets reward built-in structure, so the gaps may shrink or change sign at scale.</li>
+          <li>The regions are fixed before training: SLIC has no learned parameters, so a region can hold parts of two objects.</li>
+          <li>Colour kept is a property of the tokens. A model can do well or badly with either kind; the study measures that.</li>
+        </ul>
+        <p class="pg-cta"><a class="pill dark" href="./#contact">Request the full study</a><a class="pill line-dark" href="./#research">Perimeter on the home page</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap footgrid">
+    <a class="logo" href="./" aria-label="42theory, home"><img src="assets/42theory-lockup.svg" alt="42theory" width="160" height="44"></a>
+    <nav class="cols" aria-label="Footer">
+      <div><h3>Lab</h3><a href="./?lab=read#lab">Read</a><a href="./?lab=write#lab">Write</a><a href="./?lab=hold#lab">Hold</a></div>
+      <div><h3>Company</h3><a href="./#approach">Approach</a><a href="./#uses">Use cases</a><a href="./#research">Perimeter</a><a href="playground.html" aria-current="page">Playground</a><a href="./#film">Film</a><a href="privacy.html">Privacy</a></div>
+      <div><h3>Contact</h3><a href="mailto:hi@42theory.com">hi@42theory.com</a><a href="./#contact">Write to us</a></div>
+    </nav>
+    <div class="copy">
+      <p>© 2026 42theory. Software only: models and solvers. The lab and the film are simulations; the playground measures the picture you give it.</p>
+    </div>
+  </div>
+</footer>
+<script src="assets/42theory-playground.618a129a.js" defer></script>
+</body>
+</html>
